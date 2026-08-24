@@ -424,17 +424,26 @@
                 border-color: transparent transparent var(--white) transparent;
             }
 
-            /* iPhone 端布局控制 */
+            /* iPhone 端布局控制与精简字体尺寸优化 */
             .booking-section-new { padding: 40px 4% 30px 4% !important; }
             .booking-grid-layout { display: block !important; max-width: 100% !important; }
             .booking-left-col { display: none !important; }
             .desktop-steps-wrapper { display: none !important; }
             .ipad-steps-wrapper { display: none !important; }
             
-            .mobile-top-wrapper { display: block !important; margin-bottom: 25px; text-align: left; }
-            /* iPhone 端适当缩小标题：从 32px 优化为 24px，更加精致 */
-            .mobile-top-wrapper h2 { font-size: 24px !important; font-weight: 700; color: #2D2725; margin-bottom: 6px; text-align: center; font-family: 'Plus Jakarta Sans', serif; line-height: 1.2; }
-            .mobile-top-wrapper > p { font-size: 13.5px !important; color: #665; margin-bottom: 20px; text-align: center; line-height: 1.5; }
+            .mobile-top-wrapper { display: block !important; margin-bottom: 20px; text-align: left; }
+            
+            .mobile-top-wrapper h2 { font-size: 21px !important; font-weight: 700; color: #2D2725; margin-bottom: 4px; text-align: center; font-family: 'Plus Jakarta Sans', serif; line-height: 1.2; }
+            .mobile-top-wrapper > p { font-size: 13px !important; color: #665; margin-bottom: 16px; text-align: center; line-height: 1.45; }
+
+            .mobile-top-wrapper .step-icon-circle { width: 30px !important; height: 30px !important; font-size: 11.5px !important; }
+            .mobile-top-wrapper .step-text h4 { font-size: 13.5px !important; margin-bottom: 1px !important; }
+            .mobile-top-wrapper .step-text p { font-size: 12px !important; line-height: 1.35 !important; }
+            .mobile-top-wrapper .booking-steps-list { gap: 10px !important; margin-top: 14px !important; }
+
+            .mobile-top-wrapper .delivery-note-box { padding: 10px 12px !important; margin-top: 16px !important; }
+            .mobile-top-wrapper .delivery-note-header { font-size: 12.5px !important; margin-bottom: 2px !important; }
+            .mobile-top-wrapper .delivery-note-body { font-size: 11.5px !important; line-height: 1.35 !important; }
 
             .booking-card-right { 
                 padding: 20px 16px !important; 
@@ -445,34 +454,40 @@
                 overflow: hidden;
             }
             
-            /* iPhone 端强制单列网格，防止日期框跑位 */
+            /* 【核心修复】iPhone 端强制单列排版，确保所有输入框（含 date 框）100% 撑满卡片且不跑位 */
             .form-row-2 { 
-                display: grid; 
-                grid-template-columns: 100% !important; 
-                gap: 0 !important; 
-                margin-bottom: 0 !important; 
+                display: block !important; 
                 width: 100% !important;
+                margin-bottom: 0 !important; 
             }
             .form-group-item { 
+                display: block !important;
                 margin-bottom: 12px !important; 
                 width: 100% !important;
             }
             .form-group-item label { 
                 font-size: 11px !important; 
                 margin-bottom: 4px !important; 
+                display: block !important;
             }
             .form-group-item input, .form-group-item select { 
-                padding: 11px 12px !important; 
-                font-size: 14px !important; 
+                display: block !important;
                 width: 100% !important;
                 max-width: 100% !important;
+                min-width: 100% !important;
+                padding: 11px 12px !important; 
+                font-size: 14px !important; 
+                height: 46px !important;
                 box-sizing: border-box !important;
+                appearance: none;
+                -webkit-appearance: none;
             }
             
             .flavour-section-title { font-size: 11px !important; margin: 15px 0 8px 0 !important; }
-            .tray-dynamic-row { grid-template-columns: 75px 1fr; gap: 8px; margin-bottom: 10px; width: 100%; }
-            .tray-label-badge { padding: 11px 0 !important; font-size: 11px !important; }
-            .tray-flavor-select { padding: 11px 12px !important; font-size: 14px !important; height: 46px !important; width: 100% !important; box-sizing: border-box !important; }
+            .tray-dynamic-row { display: flex !important; gap: 8px !important; margin-bottom: 10px !important; width: 100% !important; }
+            .tray-label-badge { flex: 0 0 75px !important; padding: 11px 0 !important; font-size: 11px !important; height: 46px !important; display: flex; align-items: center; justify-content: center; box-sizing: border-box !important; }
+            .tray-flavor-select { flex: 1 !important; padding: 11px 12px !important; font-size: 14px !important; height: 46px !important; width: auto !important; box-sizing: border-box !important; appearance: none; -webkit-appearance: none; }
+            
             .estimated-total-box { padding: 15px 0 !important; margin: 18px 0 !important; }
             .est-title h4 { font-size: 14px !important; }
             .est-price-val { font-size: 19px !important; }
@@ -626,7 +641,7 @@
                     <li>French-inspired white elegant dessert cart with warm LED spotlights</li>
                     <li>Standard white & green floral decor setup</li>
                     <li>Custom stickers for dessert cups (initials / date)</li>
-                    <li>Delivery, on-site setup & cleanup within selected areas in Penang. Additional delivery surcharge may apply depending on event location.</li>
+                    <li>Delivery, on-site setup & cleanup within selected areas in Penang[cite: 3]. Additional delivery surcharge may apply depending on event location[cite: 3].</li>
                 </ul>
             </div>
         </div>
@@ -744,7 +759,7 @@
             </div>
             <div class="accordion-item">
                 <button class="accordion-header" onclick="toggleAccordion(this)">Is delivery and setup included? <span>+</span></button>
-                <div class="accordion-content"><p>Yes! Complimentary delivery and setup are included for events in Butterworth, Perai, and Bukit Mertajam. For events outside these areas, a delivery surcharge may apply depending on the event location. We’ll confirm the exact fee with you before booking.</p></div>
+                <div class="accordion-content"><p>Yes! Complimentary delivery and setup are included for events in Butterworth, Perai, and Bukit Mertajam[cite: 3]. For events outside these areas, a delivery surcharge may apply depending on the event location[cite: 3]. We’ll confirm the exact fee with you before booking.</p></div>
             </div>
         </div>
     </section>
@@ -784,7 +799,7 @@
                 </div>
             </div>
 
-            <!-- iPhone 手机端专属的顶部独立文案（粉色背景上方，标题已适当缩小） -->
+            <!-- iPhone 手机端专属的顶部独立文案 -->
             <div class="mobile-top-wrapper">
                 <h2>Let's check your date.</h2>
                 <p>Check your date and get an initial estimate in under a minute.<br>No booking is confirmed yet.</p>
@@ -817,7 +832,7 @@
                 </div>
             </div>
 
-            <!-- 右侧表单操作卡片（iPad 端会在该白框内最上方显示内嵌文案，Web 端和 iPhone 端则直接渲染表单内容） -->
+            <!-- 右侧表单操作卡片 -->
             <div class="booking-card-right">
                 
                 <!-- iPad 端专属的内嵌顶部说明与步骤 -->
