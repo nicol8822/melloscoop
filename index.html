@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mello scoop - Tiramisu Live Scoop Cart Service in Penang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --primary-gold: #C5A059;
+            --primary-gold-hover: #b08d4b;
+            --text-dark: #3A3532;
+            --footer-text: #A68966;
+            --accent-pink: #F7EBE8;
+            --white: #FFFFFF;
+            --border-color: #E6E0D8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); line-height: 1.6; font-size: 16.5px; overflow-x: hidden; }
+
+        header { display: flex; justify-content: space-between; align-items: center; padding: 14px 5%; background-color: var(--bg-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-bottom: 1px solid var(--border-color); }
+        .logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 23px; font-weight: 700; text-transform: lowercase; text-decoration: none; background: linear-gradient(135deg, #DFBE7B 0%, #C5A059 50%, #A07D38 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: var(--text-dark); font-size: 15.5px; font-weight: 500; transition: color 0.3s; white-space: nowrap; }
+        nav a:hover { color: var(--primary-gold); }
+        .menu-toggle-btn { display: none; background: transparent; border: none; cursor: pointer; font-size: 26px; color: var(--text-dark); }
+
+        .mobile-drawer { position: fixed; top: 60px; right: -240px; width: 240px; height: 100vh; background: var(--white); box-shadow: -5px 0 15px rgba(0,0,0,0.08); transition: right 0.3s ease-in-out; z-index: 99; padding: 15px 0; display: flex; flex-direction: column; }
+        .mobile-drawer.active { right: 0; }
+        .mobile-drawer a { text-decoration: none; color: var(--text-dark); padding: 14px 20px; font-size: 16.5px; font-weight: 500; border-bottom: 1px solid #f9f6f0; }
+        .mobile-drawer a:hover { background-color: var(--accent-pink); color: var(--primary-gold); }
+
+        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 0 5%; min-height: calc(100vh - 65px); background: linear-gradient(135deg, #FDFBF7 0%, #F7EBE8 100%); }
+        .hero-content h1 { font-size: 46px; margin-bottom: 15px; font-weight: 700; color: #2D2725; line-height: 1.15; }
+        .hero-content .subtitle { font-size: 13.5px; letter-spacing: 1.5px; color: var(--primary-gold); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; display: block; }
+        .hero-content p { font-size: 17.5px; color: #555; margin-bottom: 25px; max-width: 500px; }
+
+        .btn { background-color: var(--primary-gold); color: var(--white); padding: 13px 30px; border: none; border-radius: 28px; font-size: 15.5px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3); }
+        .btn:hover { background-color: var(--primary-gold-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4); }
+
+        .hero-image-wrapper img { width: 100%; max-width: 400px; border-radius: 18px; box-shadow: 0 15px 30px rgba(0,0,0,0.08); display: block; margin: 0 auto; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 5%; }
+        .section-title { text-align: center; font-weight: 700; font-size: 27px; margin-bottom: 8px; color: #2D2725; }
+        .section-desc { text-align: center; color: #777; margin-bottom: 30px; font-size: 15.5px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* Package Cards */
+        .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 35px; }
+        .package-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px 22px; text-align: left; position: relative; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
+        .package-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); border-color: var(--primary-gold); }
+        .package-card.popular { border: 2px solid var(--primary-gold); }
+        
+        .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background-color: var(--primary-gold); color: var(--white); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+
+        .pkg-top-title { font-size: 13px; font-weight: 700; color: var(--text-dark); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .package-card .price { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 15px; }
+        
+        .package-features-list { list-style: none; padding-left: 0; margin-bottom: 20px; }
+        .package-features-list li { font-size: 14px; color: #555; margin-bottom: 8px; padding-left: 14px; position: relative; }
+        .package-features-list li::before { content: "•"; color: var(--primary-gold); position: absolute; left: 0; font-weight: bold; font-size: 16px; line-height: 1; }
+
+        .select-btn-wrapper { text-align: center; margin-top: auto; }
+        .select-pkg-btn { display: inline-block; width: auto; min-width: 120px; padding: 6px 20px; background-color: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); border-radius: 20px; font-size: 13.5px; font-weight: 600; text-decoration: none; text-align: center; transition: all 0.2s ease; }
+        .select-pkg-btn:hover { background-color: var(--primary-gold); color: var(--white); }
+        .package-card.popular .select-pkg-btn { background-color: var(--primary-gold); color: var(--white); }
+        .package-card.popular .select-pkg-btn:hover { background-color: var(--primary-gold-hover); }
+
+        /* Flavor Cards */
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 35px; align-items: stretch; }
+        .info-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
+        .info-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); border-color: var(--primary-gold); }
+        .info-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 6px; }
+        .info-card h4 { font-size: 17.5px; color: #2D2725; font-weight: 700; white-space: nowrap; }
+        .price-tag { font-size: 13.5px; font-weight: 600; color: var(--primary-gold); white-space: nowrap; }
+        .info-card.featured { border: 2px solid var(--primary-gold); }
+        .info-card p { font-size: 14.5px; color: #555; margin-bottom: 0px; }
+        
+        .note { font-size: 9.5px; color: #888; font-style: italic; margin-top: 6px; }
+
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 35px; }
+        .feature-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px 26px; }
+        .feature-card h4 { font-size: 18.5px; margin-bottom: 14px; color: #2D2725; font-weight: 700; }
+        .feature-card ul { list-style: none; padding-left: 0; }
+        .feature-card ul li { font-size: 14.5px; color: #555; margin-bottom: 10px; padding-left: 22px; position: relative; }
+        .feature-card ul li::before { content: "✓"; color: var(--primary-gold); position: absolute; left: 0; font-weight: bold; font-size: 15.5px; }
+
+        .addons-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .addon-item { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .addon-item div { flex: 1; }
+        .addon-item strong { font-size: 14.5px; color: #2D2725; }
+        .addon-item span { font-weight: 600; color: var(--primary-gold); font-size: 14.5px; white-space: nowrap; }
+
+        .merch-section { background-color: #FAF6EE; padding: 60px 5%; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); margin: 40px 0; }
+        .merch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .merch-image img { width: 100%; max-width: 320px; border-radius: 18px; display: block; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+        .merch-content h3 { font-weight: 700; font-size: 29px; margin-bottom: 8px; color: #2D2725; }
+        .merch-content p { font-size: 15.5px; color: #555; margin-bottom: 15px; }
+
+        /* ==========================================================
+           Meet Mello & Our Live Cart 模块
+           ========================================================== */
+        .ip-showcase-section { background-color: var(--accent-pink); padding: 50px 5%; text-align: center; border-radius: 14px; margin: 30px 5%; }
+        .ip-content { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 25px; }
+        
+        .video-container { 
+            width: 100%; 
+            max-width: 308.7px; 
+            margin: 0; 
+            overflow: hidden; 
+            border-radius: 20px; 
+            background: #fff; 
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08); 
+            animation: motionZoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .ip-speech { 
+            background: var(--white); 
+            padding: 22px 26px; 
+            border-radius: 16px; 
+            max-width: 380px; 
+            text-align: left; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06); 
+            font-size: 15px; 
+            color: #555;
+            line-height: 1.55;
+            position: relative;
+            animation: motionSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        
+        .ip-speech::before {
+            content: "";
+            position: absolute;
+            left: -9px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 9px 9px 9px 0;
+            border-style: solid;
+            border-color: transparent var(--white) transparent transparent;
+        }
+
+        @keyframes motionSlideIn {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes motionZoomIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .gallery-section { max-width: 80rem; margin: 0 auto; padding: 4rem 1.25rem; }
+        .gallery-grid { margin: 2.5rem auto 0 auto; display: grid; max-width: 56rem; gap: 1.25rem; }
+        .gallery-item { overflow: hidden; border-radius: 1rem; border: 1px solid var(--border-color); background-color: var(--white); }
+        .gallery-item img { height: 26rem; width: 100%; object-fit: cover; display: block; }
+        .gallery-bottom-desc { margin-top: 1.25rem; text-align: center; font-size: 0.875rem; color: #777; }
+
+        .qa-container { max-width: 780px; margin: 0 auto; padding: 50px 20px; }
+        .accordion { margin-top: 15px; }
+        .accordion-item { border-bottom: 1px solid var(--border-color); }
+        .accordion-header { width: 100%; padding: 18px 35px 18px 0; position: relative; background: none; border: none; text-align: left; font-size: 16px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-dark); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; transition: color 0.3s; }
+        .accordion-header:hover { color: var(--primary-gold); }
+        .accordion-header span { color: var(--primary-gold); font-size: 18px; font-weight: 600; position: absolute; right: 0; top: 50%; transform: translateY(-50%); transition: transform 0.3s; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #666; font-size: 15px; }
+        .accordion-content p { padding-bottom: 16px; line-height: 1.6; }
+
+        .booking-section-new { background-color: var(--accent-pink); padding: 80px 5% 50px 5%; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .booking-grid-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: start; }
+
+        .booking-left-col h2 { font-size: 36px; font-weight: 700; color: #2D2725; line-height: 1.15; margin-bottom: 12px; font-family: 'Plus Jakarta Sans', serif; }
+        .booking-left-col p { font-size: 14.5px; color: #665; margin-bottom: 20px; line-height: 1.5; }
+
+        .booking-steps-list { margin-top: 20px; display: flex; flex-direction: column; gap: 14px; }
+        .booking-step-item { display: flex; align-items: flex-start; gap: 12px; }
+        .step-icon-circle { width: 36px; height: 36px; border-radius: 50%; background: var(--white); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--primary-gold); flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .step-text h4 { font-size: 14.5px; font-weight: 700; color: #2D2725; margin-bottom: 2px; }
+        .step-text p { font-size: 13px; color: #776; margin-bottom: 0; line-height: 1.4; }
+
+        .delivery-note-box { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 16px; margin-top: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .delivery-note-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #2D2725; margin-bottom: 3px; }
+        .delivery-note-body { font-size: 12.5px; color: #776; line-height: 1.4; }
+
+        .booking-card-right { background: var(--white); border: 1px solid var(--border-color); border-radius: 18px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+
+        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .form-group-item { margin-bottom: 14px; }
+        .form-group-item label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #776; margin-bottom: 5px; }
+        .form-group-item input, .form-group-item select { width: 100%; padding: 11px 12px; border-radius: 9px; border: 1px solid var(--border-color); font-size: 14px; background: var(--white); color: var(--text-dark); outline: none; transition: all 0.3s; }
+        .form-group-item input:focus, .form-group-item select:focus { border-color: var(--primary-gold); box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15); }
+
+        .flavour-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #776; margin: 18px 0 8px 0; display: flex; justify-content: space-between; align-items: center; }
+        .tray-dynamic-row { display: grid; grid-template-columns: 80px 1fr; gap: 8px; align-items: center; margin-bottom: 10px; }
+        .tray-label-badge { background: #FAF6EE; border: 1px solid var(--border-color); text-align: center; padding: 12px 0; border-radius: 8px; font-size: 11.5px; font-weight: 700; color: #776; letter-spacing: 0.5px; }
+        .tray-flavor-select { padding: 13px 12px !important; font-size: 14.5px !important; height: 48px; border-radius: 9px !important; }
+
+        .estimated-total-box { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 16px 0; margin: 20px 0; }
+        .est-title h4 { font-size: 14px; font-weight: 700; color: #2D2725; }
+        .est-price-val { font-size: 19px; font-weight: 700; color: #2D2725; font-family: 'Plus Jakarta Sans', serif; }
+
+        .notice-card-box { background: #F3ECE6; border-left: 4px solid var(--primary-gold); padding: 14px 16px; border-radius: 6px; text-align: left; margin: 10px 0; }
+        .notice-card-title { font-weight: 700; font-size: 14px; color: #2D2725; margin-bottom: 3px; }
+        .notice-card-desc { font-size: 13px; color: #665; line-height: 1.5; }
+
+        footer { background-color: #FAF6EE; color: var(--text-dark); padding: 35px 5%; text-align: center; border-top: 1px solid var(--border-color); }
+        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .footer-info { font-size: 14px; font-weight: 600; color: var(--footer-text); letter-spacing: 0.3px; }
+        .footer-copyright { font-size: 12.5px; color: var(--footer-text); letter-spacing: 0.3px; }
+
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: var(--white); padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35); z-index: 1000; display: flex; align-items: center; gap: 8px; font-size: 14.5px; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.03); }
+        .whatsapp-text { display: inline; }
+
+        /* 默认电脑端控制 */
+        .desktop-steps-wrapper { display: block; }
+        .ipad-steps-wrapper { display: none; }
+        .mobile-top-wrapper { display: none; }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 5%;
+                min-height: auto;
+            }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0 auto;
+            }
+            .hero-content p {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-image-wrapper {
+                margin-top: 25px;
+            }
+        }
+
+        /* 专门针对 iPad 端（769px 到 1024px）：采用单列卡片集成设计，文案在白框内部最上方 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .booking-grid-layout { 
+                display: block !important; 
+                max-width: 680px !important;
+                margin: 0 auto !important;
+            }
+            .booking-left-col { 
+                display: none !important; 
+            }
+            .desktop-steps-wrapper { display: none !important; }
+            .ipad-steps-wrapper { display: block !important; margin-bottom: 25px; text-align: left; }
+            .booking-card-right { padding: 40px !important; }
+        }
+
+        /* 专门针对 iPhone 手机端（768px 及以下） */
+        @media (max-width: 768px) {
+            .menu-toggle-btn { display: block; }
+            nav { display: none; }
+            .hero-content h1 { font-size: 30px; line-height: 1.25; }
+            .hero-content p { font-size: 15px; margin-bottom: 20px; }
+            
+            .merch-section { 
+                padding: 12px 4% 12px 4% !important; 
+                margin: 8px 0 6px 0 !important; 
+                min-height: 95vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .merch-grid { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+                gap: 6px; 
+            }
+            .merch-image img { 
+                max-width: 275px !important; 
+                margin: 0 auto; 
+                border-radius: 14px; 
+            }
+            .merch-content { 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .merch-content h3 { 
+                font-size: 18px !important; 
+                margin-bottom: 3px !important; 
+            }
+            .merch-content p { 
+                font-size: 12px !important; 
+                margin-bottom: 6px !important; 
+            }
+
+            .container { padding: 30px 4%; }
+            
+            .section-title {
+                font-size: 21px !important;
+                margin-bottom: 6px !important;
+            }
+            .section-desc {
+                font-size: 13.5px !important;
+                margin-bottom: 22px !important;
+            }
+            
+            .packages-grid { 
+                display: flex; 
+                flex-direction: row; 
+                gap: 14px; 
+                overflow-x: auto; 
+                padding: 10px 4px 20px 4px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            .packages-grid::-webkit-scrollbar {
+                height: 4px;
+            }
+            .packages-grid::-webkit-scrollbar-thumb {
+                background: var(--border-color);
+                border-radius: 4px;
+            }
+            .package-card { 
+                flex: 0 0 78%; 
+                max-width: 280px;
+                padding: 22px 18px; 
+                scroll-snap-align: center; 
+                box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            }
+            .package-card .price { font-size: 22px; margin-bottom: 12px; }
+            .pkg-top-title { font-size: 12px; }
+            .package-features-list li { font-size: 13.5px; margin-bottom: 8px; padding-left: 14px; }
+            .popular-badge { font-size: 10px; padding: 3px 10px; top: -11px; }
+            .select-pkg-btn { padding: 8px 18px; font-size: 13.5px; width: 100%; text-align: center; }
+
+            .info-grid { 
+                display: flex; 
+                flex-direction: row; 
+                gap: 14px; 
+                overflow-x: auto; 
+                padding: 10px 4px 20px 4px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            .info-grid::-webkit-scrollbar {
+                height: 4px;
+            }
+            .info-grid::-webkit-scrollbar-thumb {
+                background: var(--border-color);
+                border-radius: 4px;
+            }
+            .info-card { 
+                flex: 0 0 78%; 
+                max-width: 280px;
+                padding: 20px 18px; 
+                scroll-snap-align: center; 
+                box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            }
+            .info-card h4 { font-size: 15px; white-space: normal; }
+            .info-card p { font-size: 13.5px; line-height: 1.5; }
+            .price-tag { font-size: 12.5px; }
+            .note { font-size: 10.5px; }
+
+            .features-grid { 
+                grid-template-columns: 1fr; 
+                gap: 12px; 
+                margin-bottom: 25px; 
+            }
+            .feature-card { 
+                padding: 16px 18px; 
+            }
+            .feature-card h4 { 
+                font-size: 16px; 
+                margin-bottom: 8px; 
+            }
+            .feature-card ul li { 
+                font-size: 13.5px; 
+                margin-bottom: 6px; 
+            }
+
+            .addons-container { grid-template-columns: 1fr; gap: 12px; }
+            
+            .ip-showcase-section { 
+                padding: 15px 4% !important; 
+                margin: 5px 4% !important; 
+                min-height: 95vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .ip-showcase-section .section-title {
+                font-size: 21px !important;
+                margin-bottom: 4px !important;
+            }
+            .ip-showcase-section .section-desc {
+                font-size: 13px !important;
+                margin-bottom: 8px !important;
+            }
+            .ip-content { 
+                flex-direction: column; 
+                gap: 16px !important; 
+                align-items: center; 
+                margin-top: 2px !important;
+            }
+            .video-container { 
+                max-width: 206px !important; 
+                margin: 0 auto; 
+                border-radius: 14px; 
+            }
+            
+            .ip-speech { 
+                max-width: 100%; 
+                text-align: center; 
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+            .ip-speech::before {
+                left: 50%;
+                top: -9px;
+                transform: translateX(-50%);
+                border-width: 0 9px 9px 9px;
+                border-color: transparent transparent var(--white) transparent;
+            }
+
+            /* iPhone 端布局控制 */
+            .booking-section-new { padding: 40px 4% 30px 4% !important; }
+            .booking-grid-layout { display: block !important; max-width: 100% !important; }
+            .booking-left-col { display: none !important; }
+            .desktop-steps-wrapper { display: none !important; }
+            .ipad-steps-wrapper { display: none !important; }
+            
+            .mobile-top-wrapper { display: block !important; margin-bottom: 25px; text-align: left; }
+            /* iPhone 端适当缩小标题：从 32px 优化为 24px，更加精致 */
+            .mobile-top-wrapper h2 { font-size: 24px !important; font-weight: 700; color: #2D2725; margin-bottom: 6px; text-align: center; font-family: 'Plus Jakarta Sans', serif; line-height: 1.2; }
+            .mobile-top-wrapper > p { font-size: 13.5px !important; color: #665; margin-bottom: 20px; text-align: center; line-height: 1.5; }
+
+            .booking-card-right { 
+                padding: 20px 16px !important; 
+                border-radius: 18px; 
+                margin-top: 0; 
+                width: 100%;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            
+            /* iPhone 端强制单列网格，防止日期框跑位 */
+            .form-row-2 { 
+                display: grid; 
+                grid-template-columns: 100% !important; 
+                gap: 0 !important; 
+                margin-bottom: 0 !important; 
+                width: 100% !important;
+            }
+            .form-group-item { 
+                margin-bottom: 12px !important; 
+                width: 100% !important;
+            }
+            .form-group-item label { 
+                font-size: 11px !important; 
+                margin-bottom: 4px !important; 
+            }
+            .form-group-item input, .form-group-item select { 
+                padding: 11px 12px !important; 
+                font-size: 14px !important; 
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            .flavour-section-title { font-size: 11px !important; margin: 15px 0 8px 0 !important; }
+            .tray-dynamic-row { grid-template-columns: 75px 1fr; gap: 8px; margin-bottom: 10px; width: 100%; }
+            .tray-label-badge { padding: 11px 0 !important; font-size: 11px !important; }
+            .tray-flavor-select { padding: 11px 12px !important; font-size: 14px !important; height: 46px !important; width: 100% !important; box-sizing: border-box !important; }
+            .estimated-total-box { padding: 15px 0 !important; margin: 18px 0 !important; }
+            .est-title h4 { font-size: 14px !important; }
+            .est-price-val { font-size: 19px !important; }
+
+            .whatsapp-float { padding: 12px; border-radius: 50%; }
+            .whatsapp-text { display: none; }
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .gallery-item img { height: 26rem; }
+        }
+    </style>
+    <meta name="format-detection" content="telephone=no">
+</head>
+<body>
+
+    <header>
+        <a href="#home" class="logo-text">mello scoop</a>
+        <button class="menu-toggle-btn" onclick="document.getElementById('mobileDrawer').classList.toggle('active')">☰</button>
+        <nav>
+            <a href="#packages">Packages</a>
+            <a href="#flavors">Flavors</a>
+            <a href="#merchandise">Tasting Box</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#faq">FAQ</a>
+            <a href="#booking" style="color:var(--primary-gold);">Check Date</a>
+        </nav>
+    </header>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+        <a href="#packages" onclick="toggleMenu()">Packages</a>
+        <a href="#flavors" onclick="toggleMenu()">Flavors</a>
+        <a href="#merchandise" onclick="toggleMenu()">Tasting Box</a>
+        <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+        <a href="#faq" onclick="toggleMenu()">FAQ</a>
+        <a href="#booking" onclick="toggleMenu()">Check Date</a>
+    </div>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="subtitle">Penang's live-scoop dessert cart</span>
+            <h1>The Perfect Scoop for Your Special Event</h1>
+            <p>Perfect for Weddings, Birthdays & Corporate Events. Bring the ultimate live-scoop tiramisu experience to delight your guests with elegance.</p>
+            <a href="#booking" class="btn">Check Availability</a>
+        </div>
+        <div class="hero-image-wrapper">
+            <img src="https://baranbakery.com/wp-content/uploads/2024/05/Tiramisu-11-683x1024.jpg" alt="Delicious Tiramisu">
+        </div>
+    </section>
+
+    <div class="container" id="packages">
+        <h2 class="section-title">Package Options</h2>
+        <p class="section-desc">Select the ideal tier tailored to your guest headcount</p>
+
+        <div class="packages-grid">
+            <div class="package-card">
+                <div>
+                    <div class="pkg-top-title">Package A</div>
+                    <div class="price">RM 1,300</div>
+                    <ul class="package-features-list">
+                        <li>100 pax capacity</li>
+                        <li>2 trays handcrafted tiramisu</li>
+                        <li>Suitable for 80–100 guests</li>
+                    </ul>
+                </div>
+                <div class="select-btn-wrapper">
+                    <a href="#booking" class="select-pkg-btn" onclick="selectPackage('A')">Select</a>
+                </div>
+            </div>
+
+            <div class="package-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div>
+                    <div class="pkg-top-title">Package B</div>
+                    <div class="price">RM 1,850</div>
+                    <ul class="package-features-list">
+                        <li>150 pax capacity</li>
+                        <li>3 trays handcrafted tiramisu</li>
+                        <li>Suitable for 120–150 guests</li>
+                    </ul>
+                </div>
+                <div class="select-btn-wrapper">
+                    <a href="#booking" class="select-pkg-btn" onclick="selectPackage('B')">Select</a>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div>
+                    <div class="pkg-top-title">Package C</div>
+                    <div class="price">RM 2,400</div>
+                    <ul class="package-features-list">
+                        <li>200 pax capacity</li>
+                        <li>4 trays handcrafted tiramisu</li>
+                        <li>Suitable for 160–200 guests</li>
+                    </ul>
+                </div>
+                <div class="select-btn-wrapper">
+                    <a href="#booking" class="select-pkg-btn" onclick="selectPackage('C')">Select</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="flavors" style="padding-top: 10px;">Flavor Selection</h2>
+        <p class="section-desc">Choose your preferred style for the celebration</p>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <div>
+                    <div class="info-card-header">
+                        <h4>Classic Alcoholic</h4>
+                    </div>
+                    <p>Crafted with espresso, coffee liqueur, and Irish cream. Rich and aromatic.</p>
+                </div>
+                <p class="note">* Authentic Italian flavor profile.</p>
+            </div>
+            <div class="info-card">
+                <div>
+                    <div class="info-card-header">
+                        <h4>Alcohol-Free</h4>
+                    </div>
+                    <p>Zero alcohol, made with natural vanilla extract and Mandheling coffee.</p>
+                </div>
+                <p class="note">* Safe for pregnant women, kids & all guests.</p>
+            </div>
+            <div class="info-card featured">
+                <div>
+                    <div class="info-card-header">
+                        <h4 style="color: var(--primary-gold);"><span style="color: var(--primary-gold); font-size: 14px; margin-right: 3px;">★</span> Premium Pistachio</h4>
+                        <span class="price-tag">+RM 220 / Tray</span>
+                    </div>
+                    <p>Creamy mascarpone cream blended with 100% premium pistachio paste, topped with pistachio crunch.</p>
+                </div>
+                <p class="note">* Rich and decadent nutty profile.</p>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>All Packages Include:</h4>
+                <ul>
+                    <li>Handcrafted live-scoop tiramisu service</li>
+                    <li>1 dedicated service staff for 2 hours</li>
+                    <li>Serving cups, spoons & napkins</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4>Complimentary Services:</h4>
+                <ul>
+                    <li>French-inspired white elegant dessert cart with warm LED spotlights</li>
+                    <li>Standard white & green floral decor setup</li>
+                    <li>Custom stickers for dessert cups (initials / date)</li>
+                    <li>Delivery, on-site setup & cleanup within selected areas in Penang. Additional delivery surcharge may apply depending on event location.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="padding-top: 10px; font-size: 27px;">Optional Add-Ons</h2>
+        <div class="addons-container" style="margin-top: 15px;">
+            <div class="addon-item">
+                <div>
+                    <strong>Customized Mirror Welcome Sign</strong>
+                    <p class="note" style="margin: 2px 0 0 0;">Vintage arch/pebble mirror, stand & callig. (Rental)</p>
+                </div>
+                <span>+ RM 150</span>
+            </div>
+            <div class="addon-item">
+                <div>
+                    <strong>Extra Service Hour</strong>
+                    <p class="note" style="margin: 2px 0 0 0;">Extend on-site service and display time</p>
+                </div>
+                <span>+ RM 100 / hr</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="merch-section" id="merchandise">
+        <div class="merch-grid">
+            <div class="merch-image">
+                <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG-1513.png" alt="Mello Scoop Tasting Box">
+            </div>
+            <div class="merch-content">
+                <h3>Tasting Box Available for Preorder</h3>
+                <p>Not sure which flavor to choose? Try our signature tiramisu flavors at home before your big day!</p>
+                <a href="https://wa.me/601112998136?text=Hello%20mello%20scoop,%20I%20would%20like%20to%20preorder%20the%20tasting%20box!" target="_blank" class="btn">Preorder Tasting Box</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Mello & Our Live Cart 模块 -->
+    <section class="ip-showcase-section" id="cart-service">
+        <h2 class="section-title">Meet Mello & Our Live Cart</h2>
+        <p class="section-desc">Bringing whimsy, cuteness, and interactive gourmet dessert to your venue</p>
+        
+        <div class="ip-content">
+            <div class="video-container"> 
+                <video id="melloVideo" 
+                       src="https://raw.githubusercontent.com/nicol8822/imageandvideo/491b06c8f8dd68af16c4e70ac382d23809f6ecba/%E7%94%BB%E9%9D%A2%E4%B8%AD%E7%9A%84%E7%94%9F%E7%89%A9%E4%BB%A5%E5%B9%B3%E7%A8%B3%E8%87%AA%E7%84%B6%E7%9A%84%E9%80%9F%E5%BA%A6%EF%BC%8C%E5%BF%AB%E9%80%9F%E9%A1%BA%E6%BB%91%E5%9C%B0%E5%B0%86%E8%84%91%E8%A2%8B%E4%BB%8E%E5%B7%A6%E8%BD%AC%E5%88%B0%E5%8F%B3%EF%BC%8C%E5%8A%A8.mp4" 
+                       autoplay 
+                       muted 
+                       loop 
+                       playsinline 
+                       webkit-playsinline
+                       style="width: 100%; display: block;">
+                </video>
+            </div>
+            <div class="ip-speech">
+                <p><strong>✨ Hello sweet tooth!</strong> I'm Mello, your master taster. Come experience the live-scooped tiramisu served straight from our dessert cart!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Live Scoop Experience</h2>
+        <p class="section-desc">A closer look at our freshly scooped, velvety smooth signature tiramisu setup</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/c7e737d7242be7cadf2227d787b715feccd425cb/IMG-1517.png" alt="Live Scoop Setup Experience 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG-0659.png" alt="Live Scoop Setup Experience 2">
+            </div>
+        </div>
+        <p class="gallery-bottom-desc">
+            Freshly scooped, velvety smooth signature tiramisu
+        </p>
+    </section>
+
+    <section class="qa-container" id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Everything you need to know about our Live Scoop service</p>
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">What does the live scoop cart service include? <span>+</span></button>
+                <div class="accordion-content"><p>We provide professional staff equipped with our custom dessert cart and freshly prepared tiramisu directly to your event venue, delivering an immersive live-scoop experience for your guests.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">How far in advance should we book the tiramisu cart? <span>+</span></button>
+                <div class="accordion-content"><p>We recommend placing your order at least 2–3 weeks in advance to secure your preferred date, but early booking is suggested to secure your spot!</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">How do I confirm my final order and booking date? <span>+</span></button>
+                <div class="accordion-content"><p>Once you select your date and check availability, you can contact us directly via the WhatsApp button at the bottom right to pay the deposit and confirm your booking.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Is the deposit refundable if the event is cancelled? <span>+</span></button>
+                <div class="accordion-content"><p>Deposits are only refundable if cancellation is requested within 1 week after you placed your order. After this 1-week period, deposits become strictly non-refundable.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">What payment methods do you accept? <span>+</span></button>
+                <div class="accordion-content"><p>A 50% deposit is required via TNG or bank transfer to secure your event date. The remaining balance must be settled 1–2 days prior to the event.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">What is the space requirement for setting up the live scoop cart? <span>+</span></button>
+                <div class="accordion-content"><p>Our dessert cart is compact and typically requires an area of approximately 1.8m x 1.2m, making it flexible for both indoor hotel ballrooms and outdoor garden venues.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Do your service staff handle the serving process? <span>+</span></button>
+                <div class="accordion-content"><p>Yes! Our service crew will take care of setup and serving throughout the event.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Is electricity required for the dessert cart setup? <span>+</span></button>
+                <div class="accordion-content"><p>Yes. A standard power outlet is required to power the illuminated logo and canopy lights. Please ensure a power point is available near the setup area.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Can we customize the cup stickers for our wedding theme? <span>+</span></button>
+                <div class="accordion-content"><p>Yes! Custom stickers for dessert cups featuring your initials and event date are included as part of our complimentary services. You can choose from our romantic floral or minimalist design references.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Is delivery and setup included? <span>+</span></button>
+                <div class="accordion-content"><p>Yes! Complimentary delivery and setup are included for events in Butterworth, Perai, and Bukit Mertajam. For events outside these areas, a delivery surcharge may apply depending on the event location. We’ll confirm the exact fee with you before booking.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-section-new" id="booking">
+        <div class="booking-grid-layout">
+            <!-- 电脑端专属的左侧文案栏（Web 端保持双栏） -->
+            <div class="booking-left-col desktop-steps-wrapper">
+                <h2>Let's check your date.</h2>
+                <p>Check your date and get an initial estimate in under a minute.<br>No booking is confirmed yet.</p>
+                
+                <div class="booking-steps-list">
+                    <div class="booking-step-item">
+                        <div class="step-icon-circle">01</div>
+                        <div class="step-text">
+                            <h4>Check availability</h4>
+                            <p>Select your event date, package and flavours. We'll check availability for you.</p>
+                        </div>
+                    </div>
+                    <div class="booking-step-item">
+                        <div class="step-icon-circle">02</div>
+                        <div class="step-text">
+                            <h4>Confirm on WhatsApp</h4>
+                            <p>We'll confirm your exact venue, delivery fee and final details on WhatsApp.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="delivery-note-box">
+                    <div class="delivery-note-header">
+                        <span>🚚</span> Complimentary delivery & setup
+                    </div>
+                    <div class="delivery-note-body">
+                        Butterworth · Perai · Bukit Mertajam<br>
+                        Additional delivery surcharge may apply outside these areas.
+                    </div>
+                </div>
+            </div>
+
+            <!-- iPhone 手机端专属的顶部独立文案（粉色背景上方，标题已适当缩小） -->
+            <div class="mobile-top-wrapper">
+                <h2>Let's check your date.</h2>
+                <p>Check your date and get an initial estimate in under a minute.<br>No booking is confirmed yet.</p>
+                
+                <div class="booking-steps-list">
+                    <div class="booking-step-item">
+                        <div class="step-icon-circle">01</div>
+                        <div class="step-text">
+                            <h4>Check availability</h4>
+                            <p>Select your event date, package and flavours. We'll check availability for you.</p>
+                        </div>
+                    </div>
+                    <div class="booking-step-item">
+                        <div class="step-icon-circle">02</div>
+                        <div class="step-text">
+                            <h4>Confirm on WhatsApp</h4>
+                            <p>We'll confirm your exact venue, delivery fee and final details on WhatsApp.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="delivery-note-box">
+                    <div class="delivery-note-header">
+                        <span>🚚</span> Complimentary delivery & setup
+                    </div>
+                    <div class="delivery-note-body">
+                        Butterworth · Perai · Bukit Mertajam<br>
+                        Additional delivery surcharge may apply outside these areas.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧表单操作卡片（iPad 端会在该白框内最上方显示内嵌文案，Web 端和 iPhone 端则直接渲染表单内容） -->
+            <div class="booking-card-right">
+                
+                <!-- iPad 端专属的内嵌顶部说明与步骤 -->
+                <div class="ipad-steps-wrapper">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <h2 style="font-size: 30px; font-weight: 700; color: #2D2725; margin-bottom: 6px; font-family: 'Plus Jakarta Sans', serif;">Let's check your date.</h2>
+                        <p style="font-size: 14.5px; color: #665;">Check your date and get an initial estimate in under a minute.<br>No booking is confirmed yet.</p>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px;">
+                        <div class="booking-step-item" style="background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 16px;">
+                            <div class="step-icon-circle">01</div>
+                            <div class="step-text">
+                                <h4>Check availability</h4>
+                                <p>Select your event date, package and flavours. We'll check availability for you.</p>
+                            </div>
+                        </div>
+                        <div class="booking-step-item" style="background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 16px;">
+                            <div class="step-icon-circle">02</div>
+                            <div class="step-text">
+                                <h4>Confirm on WhatsApp</h4>
+                                <p>We'll confirm your exact venue, delivery fee and final details on WhatsApp.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="delivery-note-box" style="margin-top: 0; background: var(--bg-color);">
+                        <div class="delivery-note-header">
+                            <span>🚚</span> Complimentary delivery & setup
+                        </div>
+                        <div class="delivery-note-body">
+                            Butterworth · Perai · Bukit Mertajam<br>
+                            Additional delivery surcharge may apply outside these areas.
+                        </div>
+                    </div>
+                    <div style="height: 15px;"></div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group-item">
+                        <label for="booking-date">Event Date</label>
+                        <input type="date" id="booking-date" onchange="validateWeekend(this)">
+                    </div>
+                    <div class="form-group-item">
+                        <label for="event-type">Event Type</label>
+                        <select id="event-type">
+                            <option value="Wedding">Wedding</option>
+                            <option value="Birthday">Birthday Party</option>
+                            <option value="Corporate">Corporate Event</option>
+                            <option value="Other">Other Celebration</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group-item">
+                        <label for="select-package">Package</label>
+                        <select id="select-package" onchange="updateTraySelectors()">
+                            <option value="" disabled selected>-- Select Package --</option>
+                            <option value="A" data-price="1300" data-trays="2">Package A · 2 trays · RM1,300</option>
+                            <option value="B" data-price="1850" data-trays="3">Package B · 3 trays · RM1,850</option>
+                            <option value="C" data-price="2400" data-trays="4">Package C · 4 trays · RM2,400</option>
+                        </select>
+                    </div>
+                    <div class="form-group-item">
+                        <label for="area-input">Area / Postcode</label>
+                        <input type="text" id="area-input" placeholder="e.g. 14000, Bukit Mertajam or Georgetown">
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group-item">
+                        <label for="serving-time">Serving Time</label>
+                        <select id="serving-time">
+                            <option value="" disabled selected>-- Select Start Time --</option>
+                            <option value="10:00 AM - 12:00 PM">10:00 AM – 12:00 PM</option>
+                            <option value="11:00 AM - 1:00 PM">11:00 AM – 1:00 PM</option>
+                            <option value="12:00 PM - 2:00 PM">12:00 PM – 2:00 PM</option>
+                            <option value="1:00 PM - 3:00 PM">1:00 PM – 3:00 PM</option>
+                            <option value="2:00 PM - 4:00 PM">2:00 PM – 4:00 PM</option>
+                            <option value="3:00 PM - 5:00 PM">3:00 PM – 5:00 PM</option>
+                            <option value="4:00 PM - 6:00 PM">4:00 PM – 6:00 PM</option>
+                            <option value="5:00 PM - 7:00 PM">5:00 PM – 7:00 PM</option>
+                            <option value="6:00 PM - 8:00 PM">6:00 PM – 8:00 PM</option>
+                            <option value="7:00 PM - 9:00 PM">7:00 PM – 9:00 PM</option>
+                            <option value="8:00 PM - 10:00 PM">8:00 PM – 10:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group-item" style="display:flex; align-items:flex-end;">
+                        <p style="font-size: 12px; color: #998; line-height: 1.4; margin: 0;">Pick your preferred start time — each slot is a 2-hour service window.</p>
+                    </div>
+                </div>
+
+                <div class="flavour-section-title">
+                    <span>Flavor Selection</span>
+                    <span id="tray-count-label">0 Tray</span>
+                </div>
+
+                <div id="tray-selectors-container">
+                    <!-- 动态生成托盘选择器 -->
+                </div>
+
+                <div class="estimated-total-box">
+                    <div class="est-title">
+                        <h4>Estimated Total</h4>
+                    </div>
+                    <div class="est-price-val" id="display-total">RM 0</div>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="btn" style="width: 100%; border-radius: 12px; padding: 12px; font-size: 15px;" onclick="checkAvailability()">Check availability</button>
+                </div>
+
+                <div id="check-result" style="margin-top: 15px; text-align: center;"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">Live-Scoop Dessert Cart · Penang, Malaysia</div>
+            <div class="footer-copyright">© 2026 HELLO MELLO ENTERPRISE (<span style="unicode-bidi:isolate;">202603201394</span> / KT0618534-U). All rights reserved.</div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/601112998136?text=Hello%20mello%20scoop,%20I%20would%20like%20to%20inquire%20about%20booking%20the%20tiramisu%20cart!" class="whatsapp-float" target="_blank" aria-label="WhatsApp Us">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        <span class="whatsapp-text">WhatsApp Us</span>
+    </a>
+
+    <script>
+        const video = document.getElementById('melloVideo');
+        if (video) {
+            video.play().catch(() => {});
+        }
+
+        function toggleAccordion(btn) {
+            const content = btn.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                btn.querySelector('span').innerText = "+";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                btn.querySelector('span').innerText = "-";
+            }
+        }
+
+        function toggleMenu() {
+            document.getElementById('mobileDrawer').classList.toggle('active');
+        }
+
+        function selectPackage(pkgValue) {
+            const packageSelect = document.getElementById('select-package');
+            if (packageSelect) {
+                packageSelect.value = pkgValue;
+                updateTraySelectors();
+            }
+        }
+
+        const BOOKING_API_URL = "https://script.google.com/macros/s/AKfycbyStHePA7uvN6QnJNA_nIuOkQ8hler-5wNwkHNqawbuhVl0hOfMxdx0yzYUmwl1rrno/exec";
+        let fullyBookedDates = [];
+        let bookedDatesLoaded = false;
+
+        async function loadBookedDates() {
+            try {
+                const res = await fetch(BOOKING_API_URL);
+                const data = await res.json();
+                fullyBookedDates = data.bookedDates || [];
+            } catch (err) {
+                console.error("无法读取库存，按空处理", err);
+                fullyBookedDates = [];
+            } finally {
+                bookedDatesLoaded = true;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadBookedDates();
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('booking-date');
+            if(dateInput) dateInput.setAttribute('min', today);
+            
+            updateTraySelectors();
+        });
+
+        function validateWeekend(input) {
+            const val = input.value;
+            const resultDiv = document.getElementById('check-result');
+            if (!val) return;
+            
+            const selectedDate = new Date(val);
+            const dayOfWeek = selectedDate.getDay();
+
+            if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">Weekend only</div>
+                        <div class="notice-card-desc">Weekdays are not available. Please select a Saturday or Sunday.</div>
+                    </div>
+                `;
+                input.value = "";
+            } else {
+                resultDiv.innerHTML = "";
+            }
+        }
+
+        function updateTraySelectors() {
+            const packageSelect = document.getElementById('select-package');
+            const container = document.getElementById('tray-selectors-container');
+            const trayCountLabel = document.getElementById('tray-count-label');
+            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
+            
+            container.innerHTML = "";
+            const resultDiv = document.getElementById('check-result');
+            if(resultDiv) resultDiv.innerHTML = "";
+
+            if (!selectedOption || !selectedOption.value) {
+                if(trayCountLabel) trayCountLabel.innerText = "0 Tray";
+                const totalDisplay = document.getElementById('display-total');
+                if(totalDisplay) totalDisplay.innerText = "RM 0";
+                return;
+            }
+
+            const trayCount = parseInt(selectedOption.dataset.trays);
+            if(trayCountLabel) trayCountLabel.innerText = trayCount + (trayCount > 1 ? " Trays" : " Tray");
+
+            for (let i = 1; i <= trayCount; i++) {
+                const row = document.createElement('div');
+                row.className = 'tray-dynamic-row';
+                
+                const badge = document.createElement('div');
+                badge.className = 'tray-label-badge';
+                badge.innerText = `TRAY ${i}`;
+                
+                const select = document.createElement('select');
+                select.className = 'tray-flavor-select';
+                select.onchange = calculateTotal;
+                
+                select.innerHTML = `
+                    <option value="Classic Alcoholic" selected>Classic Alcoholic</option>
+                    <option value="Alcohol-Free">Alcohol-Free</option>
+                    <option value="Premium Pistachio">★ Premium Pistachio (+RM220)</option>
+                `;
+
+                row.appendChild(badge);
+                row.appendChild(select);
+                container.appendChild(row);
+            }
+            
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const packageSelect = document.getElementById('select-package');
+            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
+            const totalDisplay = document.getElementById('display-total');
+            
+            if (!selectedOption || !selectedOption.value || !selectedOption.dataset.price) {
+                if(totalDisplay) totalDisplay.innerText = "RM 0";
+                return { base: 0, pistachioCount: 0, total: 0 };
+            }
+
+            const basePrice = parseInt(selectedOption.dataset.price);
+            const flavorSelects = document.querySelectorAll('.tray-flavor-select');
+            
+            let pistachioCount = 0;
+            flavorSelects.forEach(sel => {
+                if (sel.value === 'Premium Pistachio') {
+                    pistachioCount++;
+                }
+            });
+
+            const pistachioUpgradeTotal = pistachioCount * 220;
+            const estimatedTotal = basePrice + pistachioUpgradeTotal;
+
+            if(totalDisplay) {
+                totalDisplay.innerText = "RM " + estimatedTotal.toLocaleString();
+            }
+
+            return {
+                packageName: selectedOption.text.split(' · ')[0],
+                basePrice,
+                pistachioCount,
+                pistachioUpgradeTotal,
+                estimatedTotal
+            };
+        }
+
+        function checkAvailability() {
+            const dateInput = document.getElementById('booking-date').value;
+            const packageSelect = document.getElementById('select-package');
+            const areaInput = document.getElementById('area-input').value.trim();
+            const eventType = document.getElementById('event-type').value;
+            const servingTime = document.getElementById('serving-time').value;
+            const resultDiv = document.getElementById('check-result');
+            
+            if(!dateInput) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">Date required</div>
+                        <div class="notice-card-desc">Please select a valid event date first.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (!servingTime) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">Serving time required</div>
+                        <div class="notice-card-desc">Please choose a preferred serving time slot.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (!bookedDatesLoaded) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">Loading</div>
+                        <div class="notice-card-desc">Checking availability, please try again in a moment.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (fullyBookedDates.includes(dateInput)) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">One more step</div>
+                        <div class="notice-card-desc">Sorry, ${dateInput} is fully booked. Please choose another weekend date.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            if(!packageSelect.value) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">Package required</div>
+                        <div class="notice-card-desc">Please select a package first.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            const flavorSelects = document.querySelectorAll('.tray-flavor-select');
+            let flavorSummary = [];
+            
+            flavorSelects.forEach((sel, idx) => {
+                flavorSummary.push(`Tray ${idx + 1}: ${sel.value}`);
+            });
+
+            const calc = calculateTotal();
+            const areaString = areaInput ? ` Area / postcode: ${areaInput}.` : "";
+            const messageString = `Hi mello scoop, I would like to inquire about a ${eventType} booking for date: ${dateInput}, serving time: ${servingTime}.${areaString} Package: ${calc.packageName} (RM ${calc.basePrice.toLocaleString()}), Flavors: [${flavorSummary.join(', ')}], Estimated Total: RM ${calc.estimatedTotal.toLocaleString()}. Please help me confirm my name, exact venue, and final delivery fee.`;
+            const waMessage = encodeURIComponent(messageString);
+
+            let pistachioLine = calc.pistachioCount > 0 ? `• Premium Pistachio Upgrade: ${calc.pistachioCount} × RM220 = +RM${calc.pistachioUpgradeTotal.toLocaleString()}<br>` : "";
+            let areaLine = areaInput ? `• Area / postcode: ${areaInput}<br>` : "";
+
+            resultDiv.innerHTML = `
+                <div class="notice-card-box">
+                    <div class="notice-card-title">Selected date ${dateInput} is available!</div>
+                    <div class="notice-card-desc" style="margin-top: 6px;">
+                        <strong>Selected Summary:</strong><br>
+                        • Event Type: ${eventType}<br>
+                        • Serving Time: ${servingTime}<br>
+                        • Package: ${calc.packageName} (RM ${calc.basePrice.toLocaleString()})<br>
+                        ${pistachioLine}
+                        ${areaLine}
+                        • <strong>Estimated Total: RM ${calc.estimatedTotal.toLocaleString()}</strong>
+                    </div>
+                </div>
+                <a href="https://wa.me/601112998136?text=${waMessage}" target="_blank" class="btn" style="padding: 10px 22px; font-size: 14.5px; width: 100%; border-radius: 10px; text-decoration: none; display: inline-block; margin-top: 10px;">Continue & Confirm on WhatsApp</a>
+            `;
+        }
+    </script>
+</body>
+</html>
