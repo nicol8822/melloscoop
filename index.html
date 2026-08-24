@@ -454,7 +454,6 @@
                 overflow: hidden;
             }
             
-            /* 【核心修复】iPhone 端强制单列排版，确保所有输入框（含 date 框）100% 撑满卡片且不跑位 */
             .form-row-2 { 
                 display: block !important; 
                 width: 100% !important;
@@ -641,7 +640,7 @@
                     <li>French-inspired white elegant dessert cart with warm LED spotlights</li>
                     <li>Standard white & green floral decor setup</li>
                     <li>Custom stickers for dessert cups (initials / date)</li>
-                    <li>Delivery, on-site setup & cleanup within selected areas in Penang[cite: 3]. Additional delivery surcharge may apply depending on event location[cite: 3].</li>
+                    <li>Delivery, on-site setup & cleanup within selected areas in Penang. Additional delivery surcharge may apply depending on event location.</li>
                 </ul>
             </div>
         </div>
@@ -759,7 +758,7 @@
             </div>
             <div class="accordion-item">
                 <button class="accordion-header" onclick="toggleAccordion(this)">Is delivery and setup included? <span>+</span></button>
-                <div class="accordion-content"><p>Yes! Complimentary delivery and setup are included for events in Butterworth, Perai, and Bukit Mertajam[cite: 3]. For events outside these areas, a delivery surcharge may apply depending on the event location[cite: 3]. We’ll confirm the exact fee with you before booking.</p></div>
+                <div class="accordion-content"><p>Yes! Complimentary delivery and setup are included for events in Butterworth, Perai, and Bukit Mertajam. For events outside these areas, a delivery surcharge may apply depending on the event location. We’ll confirm the exact fee with you before booking.</p></div>
             </div>
         </div>
     </section>
@@ -874,7 +873,7 @@
                 <div class="form-row-2">
                     <div class="form-group-item">
                         <label for="booking-date">Event Date</label>
-                        <input type="date" id="booking-date" onchange="validateWeekend(this)">
+                        <input type="date" id="booking-date" min="2026-08-24" onchange="validateDateAndWeekend(this)">
                     </div>
                     <div class="form-group-item">
                         <label for="event-type">Event Type</label>
@@ -1013,16 +1012,31 @@
             loadBookedDates();
             const today = new Date().toISOString().split('T')[0];
             const dateInput = document.getElementById('booking-date');
-            if(dateInput) dateInput.setAttribute('min', today);
+            if(dateInput) {
+                dateInput.setAttribute('min', today);
+            }
             
             updateTraySelectors();
         });
 
-        function validateWeekend(input) {
+        function validateDateAndWeekend(input) {
             const val = input.value;
             const resultDiv = document.getElementById('check-result');
             if (!val) return;
             
+            const todayStr = new Date().toISOString().split('T')[0];
+
+            if (val < todayStr) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">Invalid Date</div>
+                        <div class="notice-card-desc">Past dates cannot be selected. Please choose a future date.</div>
+                    </div>
+                `;
+                input.value = "";
+                return;
+            }
+
             const selectedDate = new Date(val);
             const dayOfWeek = selectedDate.getDay();
 
@@ -1134,6 +1148,17 @@
                     <div class="notice-card-box">
                         <div class="notice-card-title">Date required</div>
                         <div class="notice-card-desc">Please select a valid event date first.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            const todayStr = new Date().toISOString().split('T')[0];
+            if (dateInput < todayStr) {
+                resultDiv.innerHTML = `
+                    <div class="notice-card-box">
+                        <div class="notice-card-title">Invalid Date</div>
+                        <div class="notice-card-desc">Past dates cannot be selected. Please choose a future date.</div>
                     </div>
                 `;
                 return;
