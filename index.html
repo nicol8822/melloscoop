@@ -20,6 +20,90 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); line-height: 1.6; font-size: 16.5px; overflow-x: hidden; }
 
+        /* 当未进入主页时，禁止整体页面滚动 */
+        body.landing-active {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* 全屏 Landing Page 固定覆盖整个视窗，无法通过滚动向下 */
+        .fullscreen-landing-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background-color: #2D2725;
+            z-index: 9999;
+            transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+        }
+        .fullscreen-landing-section.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .fullscreen-landing-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .fullscreen-landing-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .fullscreen-landing-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(45,39,37,0.4) 0%, rgba(45,39,37,0.7) 100%);
+            z-index: 2;
+        }
+        .fullscreen-landing-content {
+            position: relative;
+            z-index: 3;
+            max-width: 850px;
+            padding: 0 5%;
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInDelayed 1.2s cubic-bezier(0.16, 1, 0.3, 1) 3s forwards; /* 延迟3秒（比之前再多2秒）后才淡入出现 */
+        }
+        .fullscreen-landing-content h2 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--white);
+            line-height: 1.15;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .fullscreen-landing-content p {
+            font-size: 19px;
+            color: #F0EAE1;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInDelayed {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         header { display: flex; justify-content: space-between; align-items: center; padding: 14px 5%; background-color: var(--bg-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-bottom: 1px solid var(--border-color); }
         .logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 23px; font-weight: 700; text-transform: lowercase; text-decoration: none; background: linear-gradient(135deg, #DFBE7B 0%, #C5A059 50%, #A07D38 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
@@ -33,15 +117,26 @@
         .mobile-drawer a { text-decoration: none; color: var(--text-dark); padding: 14px 20px; font-size: 16.5px; font-weight: 500; border-bottom: 1px solid #f9f6f0; }
         .mobile-drawer a:hover { background-color: var(--accent-pink); color: var(--primary-gold); }
 
-        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 0 5%; min-height: calc(100vh - 65px); background: linear-gradient(135deg, #FDFBF7 0%, #F7EBE8 100%); }
-        .hero-content h1 { font-size: 46px; margin-bottom: 15px; font-weight: 700; color: #2D2725; line-height: 1.15; }
+        /* Hero 左右双栏布局，右侧显示超大面积的 Landscape 轮播图片 */
+        .hero { display: grid; grid-template-columns: 1fr 1.45fr; gap: 60px; align-items: center; padding: 70px 5%; min-height: calc(92vh - 65px); background: linear-gradient(135deg, #FDFBF7 0%, #F7EBE8 100%); }
+        .hero-content h1 { font-size: 50px; margin-bottom: 15px; font-weight: 700; color: #2D2725; line-height: 1.15; }
         .hero-content .subtitle { font-size: 13.5px; letter-spacing: 1.5px; color: var(--primary-gold); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; display: block; }
-        .hero-content p { font-size: 17.5px; color: #555; margin-bottom: 25px; max-width: 500px; }
+        .hero-content p { font-size: 18px; color: #555; margin-bottom: 25px; max-width: 540px; }
 
         .btn { background-color: var(--primary-gold); color: var(--white); padding: 13px 30px; border: none; border-radius: 28px; font-size: 15.5px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3); }
         .btn:hover { background-color: var(--primary-gold-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4); }
 
-        .hero-image-wrapper img { width: 100%; max-width: 400px; border-radius: 18px; box-shadow: 0 15px 30px rgba(0,0,0,0.08); display: block; margin: 0 auto; }
+        /* 右侧超大面积 Landscape 轮播图片样式 */
+        .hero-image-wrapper { position: relative; width: 100%; max-width: 780px; margin: 0 auto; border-radius: 22px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.12); background: #eee; }
+        .hero-carousel { position: relative; width: 100%; aspect-ratio: 16 / 9.5; }
+        .hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; pointer-events: none; }
+        .hero-slide.active { opacity: 1; pointer-events: auto; }
+        .hero-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* 轮播小圆点指示器 */
+        .carousel-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+        .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+        .dot.active { background: var(--white); transform: scale(1.3); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 5%; }
         .section-title { text-align: center; font-weight: 700; font-size: 27px; margin-bottom: 8px; color: #2D2725; }
@@ -237,6 +332,7 @@
             }
             .hero-image-wrapper {
                 margin-top: 25px;
+                max-width: 100%;
             }
         }
 
@@ -259,9 +355,13 @@
         @media (max-width: 768px) {
             .menu-toggle-btn { display: block; }
             nav { display: none; }
-            .hero-content h1 { font-size: 30px; line-height: 1.25; }
+            .hero-content h1 { font-size: 32px; line-height: 1.2; }
             .hero-content p { font-size: 15px; margin-bottom: 20px; }
+            .hero-image-wrapper { max-width: 100%; border-radius: 14px; }
             
+            .fullscreen-landing-content h2 { font-size: 34px; line-height: 1.2; }
+            .fullscreen-landing-content p { font-size: 15px; margin-bottom: 25px; }
+
             .merch-section { 
                 padding: 12px 4% 12px 4% !important; 
                 margin: 8px 0 6px 0 !important; 
@@ -424,26 +524,16 @@
                 border-color: transparent transparent var(--white) transparent;
             }
 
-            /* iPhone 端布局控制与精简字体尺寸优化 */
+            /* iPhone 端布局控制 */
             .booking-section-new { padding: 40px 4% 30px 4% !important; }
             .booking-grid-layout { display: block !important; max-width: 100% !important; }
             .booking-left-col { display: none !important; }
             .desktop-steps-wrapper { display: none !important; }
             .ipad-steps-wrapper { display: none !important; }
             
-            .mobile-top-wrapper { display: block !important; margin-bottom: 20px; text-align: left; }
-            
-            .mobile-top-wrapper h2 { font-size: 21px !important; font-weight: 700; color: #2D2725; margin-bottom: 4px; text-align: center; font-family: 'Plus Jakarta Sans', serif; line-height: 1.2; }
-            .mobile-top-wrapper > p { font-size: 13px !important; color: #665; margin-bottom: 16px; text-align: center; line-height: 1.45; }
-
-            .mobile-top-wrapper .step-icon-circle { width: 30px !important; height: 30px !important; font-size: 11.5px !important; }
-            .mobile-top-wrapper .step-text h4 { font-size: 13.5px !important; margin-bottom: 1px !important; }
-            .mobile-top-wrapper .step-text p { font-size: 12px !important; line-height: 1.35 !important; }
-            .mobile-top-wrapper .booking-steps-list { gap: 10px !important; margin-top: 14px !important; }
-
-            .mobile-top-wrapper .delivery-note-box { padding: 10px 12px !important; margin-top: 16px !important; }
-            .mobile-top-wrapper .delivery-note-header { font-size: 12.5px !important; margin-bottom: 2px !important; }
-            .mobile-top-wrapper .delivery-note-body { font-size: 11.5px !important; line-height: 1.35 !important; }
+            .mobile-top-wrapper { display: block !important; margin-bottom: 25px; text-align: left; }
+            .mobile-top-wrapper h2 { font-size: 24px !important; font-weight: 700; color: #2D2725; margin-bottom: 6px; text-align: center; font-family: 'Plus Jakarta Sans', serif; line-height: 1.2; }
+            .mobile-top-wrapper > p { font-size: 13.5px !important; color: #665; margin-bottom: 20px; text-align: center; line-height: 1.5; }
 
             .booking-card-right { 
                 padding: 20px 16px !important; 
@@ -455,38 +545,32 @@
             }
             
             .form-row-2 { 
-                display: block !important; 
-                width: 100% !important;
+                display: grid; 
+                grid-template-columns: 100% !important; 
+                gap: 0 !important; 
                 margin-bottom: 0 !important; 
+                width: 100% !important;
             }
             .form-group-item { 
-                display: block !important;
                 margin-bottom: 12px !important; 
                 width: 100% !important;
             }
             .form-group-item label { 
                 font-size: 11px !important; 
                 margin-bottom: 4px !important; 
-                display: block !important;
             }
             .form-group-item input, .form-group-item select { 
-                display: block !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                min-width: 100% !important;
                 padding: 11px 12px !important; 
                 font-size: 14px !important; 
-                height: 46px !important;
+                width: 100% !important;
+                max-width: 100% !important;
                 box-sizing: border-box !important;
-                appearance: none;
-                -webkit-appearance: none;
             }
             
             .flavour-section-title { font-size: 11px !important; margin: 15px 0 8px 0 !important; }
-            .tray-dynamic-row { display: flex !important; gap: 8px !important; margin-bottom: 10px !important; width: 100% !important; }
-            .tray-label-badge { flex: 0 0 75px !important; padding: 11px 0 !important; font-size: 11px !important; height: 46px !important; display: flex; align-items: center; justify-content: center; box-sizing: border-box !important; }
-            .tray-flavor-select { flex: 1 !important; padding: 11px 12px !important; font-size: 14px !important; height: 46px !important; width: auto !important; box-sizing: border-box !important; appearance: none; -webkit-appearance: none; }
-            
+            .tray-dynamic-row { grid-template-columns: 75px 1fr; gap: 8px; margin-bottom: 10px; width: 100%; }
+            .tray-label-badge { padding: 11px 0 !important; font-size: 11px !important; }
+            .tray-flavor-select { padding: 11px 12px !important; font-size: 14px !important; height: 46px !important; width: 100% !important; box-sizing: border-box !important; }
             .estimated-total-box { padding: 15px 0 !important; margin: 18px 0 !important; }
             .est-title h4 { font-size: 14px !important; }
             .est-price-val { font-size: 19px !important; }
@@ -502,7 +586,19 @@
     </style>
     <meta name="format-detection" content="telephone=no">
 </head>
-<body>
+<body class="landing-active">
+
+    <!-- 全屏 Landing Page：刚打开网站时展示，且文字设定为延迟3秒后才淡入出现 -->
+    <section class="fullscreen-landing-section" id="landingPage">
+        <div class="fullscreen-landing-bg">
+            <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Figures_sitting_on_construction_…_202608282356.jpeg" alt="Figures sitting on construction background">
+        </div>
+        <div class="fullscreen-landing-content">
+            <h2>Crafted Moments & Sweet Celebrations</h2>
+            <p>Experience the art of live-scoop dessert catering, designed to make your unforgettable milestones even sweeter.</p>
+            <button class="btn" onclick="enterHomepage()">Explore Packages</button>
+        </div>
+    </section>
 
     <header>
         <a href="#home" class="logo-text">mello scoop</a>
@@ -526,6 +622,7 @@
         <a href="#booking" onclick="toggleMenu()">Check Date</a>
     </div>
 
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <span class="subtitle">Penang's live-scoop dessert cart</span>
@@ -534,7 +631,18 @@
             <a href="#booking" class="btn">Check Availability</a>
         </div>
         <div class="hero-image-wrapper">
-            <img src="https://baranbakery.com/wp-content/uploads/2024/05/Tiramisu-11-683x1024.jpg" alt="Delicious Tiramisu">
+            <div class="hero-carousel" id="heroCarousel">
+                <div class="hero-slide active">
+                    <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Macro_food_photograph_of_tiramisu_202608290047.jpeg" alt="Macro Tiramisu">
+                </div>
+                <div class="hero-slide">
+                    <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Characters_looking_at_food_cart_202608281814.jpeg" alt="Characters and Food Cart">
+                </div>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+            </div>
         </div>
     </section>
 
@@ -765,7 +873,6 @@
 
     <section class="booking-section-new" id="booking">
         <div class="booking-grid-layout">
-            <!-- 电脑端专属的左侧文案栏（Web 端保持双栏） -->
             <div class="booking-left-col desktop-steps-wrapper">
                 <h2>Let's check your date.</h2>
                 <p>Check your date and get an initial estimate in under a minute.<br>No booking is confirmed yet.</p>
@@ -798,7 +905,6 @@
                 </div>
             </div>
 
-            <!-- iPhone 手机端专属的顶部独立文案 -->
             <div class="mobile-top-wrapper">
                 <h2>Let's check your date.</h2>
                 <p>Check your date and get an initial estimate in under a minute.<br>No booking is confirmed yet.</p>
@@ -831,10 +937,8 @@
                 </div>
             </div>
 
-            <!-- 右侧表单操作卡片 -->
             <div class="booking-card-right">
                 
-                <!-- iPad 端专属的内嵌顶部说明与步骤 -->
                 <div class="ipad-steps-wrapper">
                     <div style="text-align: center; margin-bottom: 25px;">
                         <h2 style="font-size: 30px; font-weight: 700; color: #2D2725; margin-bottom: 6px; font-family: 'Plus Jakarta Sans', serif;">Let's check your date.</h2>
@@ -873,7 +977,7 @@
                 <div class="form-row-2">
                     <div class="form-group-item">
                         <label for="booking-date">Event Date</label>
-                        <input type="date" id="booking-date" min="2026-08-24" onchange="validateDateAndWeekend(this)">
+                        <input type="date" id="booking-date" onchange="validateWeekend(this)">
                     </div>
                     <div class="form-group-item">
                         <label for="event-type">Event Type</label>
@@ -963,9 +1067,50 @@
     </a>
 
     <script>
+        // 点击 Landing Page 的 Explore Packages 按钮后才能进入主页
+        function enterHomepage() {
+            const landing = document.getElementById('landingPage');
+            landing.classList.add('hidden');
+            document.body.classList.remove('landing-active');
+        }
+
         const video = document.getElementById('melloVideo');
         if (video) {
             video.play().catch(() => {});
+        }
+
+        // Hero Image Auto-Rotate Carousel Logic
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.dot');
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slideIndex = (index + slides.length) % slides.length;
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(slideIndex + 1);
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+            resetTimer();
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4000); // 每4秒自动切换
+        }
+
+        // 初始化轮播
+        if (slides.length > 0) {
+            slideInterval = setInterval(nextSlide, 4000);
         }
 
         function toggleAccordion(btn) {
@@ -1012,31 +1157,16 @@
             loadBookedDates();
             const today = new Date().toISOString().split('T')[0];
             const dateInput = document.getElementById('booking-date');
-            if(dateInput) {
-                dateInput.setAttribute('min', today);
-            }
+            if(dateInput) dateInput.setAttribute('min', today);
             
             updateTraySelectors();
         });
 
-        function validateDateAndWeekend(input) {
+        function validateWeekend(input) {
             const val = input.value;
             const resultDiv = document.getElementById('check-result');
             if (!val) return;
             
-            const todayStr = new Date().toISOString().split('T')[0];
-
-            if (val < todayStr) {
-                resultDiv.innerHTML = `
-                    <div class="notice-card-box">
-                        <div class="notice-card-title">Invalid Date</div>
-                        <div class="notice-card-desc">Past dates cannot be selected. Please choose a future date.</div>
-                    </div>
-                `;
-                input.value = "";
-                return;
-            }
-
             const selectedDate = new Date(val);
             const dayOfWeek = selectedDate.getDay();
 
@@ -1148,17 +1278,6 @@
                     <div class="notice-card-box">
                         <div class="notice-card-title">Date required</div>
                         <div class="notice-card-desc">Please select a valid event date first.</div>
-                    </div>
-                `;
-                return;
-            }
-
-            const todayStr = new Date().toISOString().split('T')[0];
-            if (dateInput < todayStr) {
-                resultDiv.innerHTML = `
-                    <div class="notice-card-box">
-                        <div class="notice-card-title">Invalid Date</div>
-                        <div class="notice-card-desc">Past dates cannot be selected. Please choose a future date.</div>
                     </div>
                 `;
                 return;
