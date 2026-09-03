@@ -913,7 +913,7 @@
             overflow: hidden;
         }
 
-        .faq-bg-character {
+        .faq-bg-character-left {
             position: absolute;
             top: 20px;
             left: 0;
@@ -923,15 +923,37 @@
             pointer-events: none;
             opacity: 1;
             filter: none;
-            animation: floatBounceChar 4s ease-in-out infinite;
+            animation: floatBounceCharLeft 4s ease-in-out infinite;
         }
 
-        @keyframes floatBounceChar {
+        @keyframes floatBounceCharLeft {
             0%, 100% {
                 transform: translateY(0) rotate(0deg);
             }
             50% {
                 transform: translateY(-14px) rotate(-2deg);
+            }
+        }
+
+        .faq-bg-character-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 260px;
+            height: auto;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 1;
+            filter: none;
+            animation: floatBounceCharRight 4s ease-in-out infinite;
+        }
+
+        @keyframes floatBounceCharRight {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-14px) rotate(2deg);
             }
         }
 
@@ -1109,12 +1131,17 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .form-row-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+            width: 100%;
         }
 
         .form-group-item {
@@ -1122,6 +1149,8 @@
             flex-direction: column;
             gap: 8px;
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .form-group-item label {
@@ -1163,6 +1192,8 @@
             align-items: center;
             margin-bottom: 10px;
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .tray-label-badge {
@@ -1178,6 +1209,7 @@
 
         .tray-flavor-select {
             width: 100%;
+            max-width: 100%;
             padding: 10px;
             border-radius: 8px;
             border: 1px solid var(--border-color);
@@ -1208,6 +1240,8 @@
             border-radius: 12px;
             cursor: pointer;
             transition: border-color 0.2s;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .addon-checkbox-item:hover {
@@ -1245,6 +1279,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .est-title h4 {
@@ -1282,6 +1318,8 @@
             border-radius: 12px;
             padding: 14px;
             text-align: left;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .notice-card-title {
@@ -1295,7 +1333,7 @@
             color: var(--text-muted);
         }
 
-        /* Footer 样式与吉祥物图案：PC 端放大 30% 紧贴最右下角底部 */
+        /* Footer 样式与吉祥物图案：PC端放大 30% 紧贴最右下角底部 */
         footer {
             background-color: var(--bg-cream-card);
             color: var(--text-dark);
@@ -1309,7 +1347,7 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 330px; /* PC 端放大 30% 后的尺寸 */
+            width: 330px;
             height: auto;
             z-index: 1;
             pointer-events: none;
@@ -1465,7 +1503,7 @@
                 border-right: none !important;
             }
             .booking-grid-layout { grid-template-columns: 1fr; }
-            .form-row-2 { grid-template-columns: 1fr !important; gap: 14px; } 
+            .form-row-2 { grid-template-columns: 1fr !important; gap: 14px; width: 100% !important; } 
             
             .desktop-steps-wrapper { display: none; }
             .mobile-steps-top { 
@@ -1473,8 +1511,8 @@
                 margin-bottom: 24px; 
                 text-align: center !important; 
                 padding-top: 50px !important; 
-                padding-left: 36px !important;  
-                padding-right: 36px !important; 
+                padding-left: 16px !important;  
+                padding-right: 16px !important; 
             }
             
             .mobile-steps-top .booking-steps-list {
@@ -1489,6 +1527,7 @@
                 gap: 14px;
                 border-radius: 12px;
                 width: 100% !important;
+                max-width: 100% !important;
                 box-sizing: border-box;
             }
 
@@ -1541,11 +1580,11 @@
                 font-size: 14px !important;
             }
 
-            .faq-bg-character {
-                width: 150px;
-                top: 10px;
-                left: 0;
-                opacity: 1;
+            .faq-bg-character-left {
+                width: 150px !important;
+            }
+            .faq-bg-character-right {
+                width: 180px !important;
             }
 
             /* 手机移动端：完美移动到最右侧并紧贴底部 (right: 0, bottom: 0) */
@@ -1610,14 +1649,17 @@
             }
             .how-arrow { transform: rotate(90deg); padding-bottom: 0; }
             header, section, footer { padding-left: 16px; padding-right: 16px; }
+            
+            /* 手机移动端首页标题：第一排 Small Souls, 第二排 Big Magic. */
             .hero-content h1 { 
                 font-size: 34px !important; 
-                white-space: normal; 
-                line-height: 1.25;
+                white-space: normal !important; 
+                line-height: 1.25 !important;
             }
             .hero-content h1 .mobile-br {
                 display: block !important;
             }
+
             .hero-content p { 
                 margin-top: 170px !important; 
                 margin-bottom: 46px !important; 
@@ -1638,7 +1680,7 @@
             .form-group-item select,
             .tray-flavor-select {
                 font-size: 16px !important;
-                box-sizing: border-box;
+                box-sizing: border-box !important;
                 width: 100% !important;
                 max-width: 100% !important;
             }
@@ -1712,7 +1754,8 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h1 class="float-in">“Small Souls, Big<span class="mobile-br"><br></span> Magic.”</h1>
+            <!-- 手机端编排修改：第一排 Small Souls, 第二排 Big Magic. -->
+            <h1 class="float-in">“Small Souls,<span class="mobile-br"><br></span> Big Magic.”</h1>
             <p class="float-in" style="transition-delay: 0.2s;">The Art of the Indulgence</p>
             <a href="#booking" class="btn-primary float-in" style="transition-delay: 0.4s;">Book Your Event</a>
         </div>
@@ -1948,7 +1991,10 @@
 
     <!-- FAQ Section -->
     <section id="faq" class="bg-latte">
-        <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Character_vaulting_over_ladyfing…_2K_202609040059.png" alt="Mello Scoop Character" class="faq-bg-character">
+        <!-- 保留左上角原有的吉祥物图片 -->
+        <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Character_vaulting_over_ladyfing…_2K_202609040059.png" alt="Mello Scoop Character Left" class="faq-bg-character-left">
+        <!-- 新增右下角浮动吉祥物图片 -->
+        <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Enzo_sitting_on_golden_spoon_202609040033-Photoroom.png" alt="Mello Scoop Character Right" class="faq-bg-character-right">
 
         <div class="section-inner">
             <div class="section-header float-in">
@@ -2170,7 +2216,6 @@
 
     <!-- Footer -->
     <footer>
-        <!-- 吉祥物装饰图案：PC端放大 30% 紧贴右下角底部，移动端精确对齐至右侧最底部贴死 -->
         <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Isolated%20character%20asset_%20The%20Spoon-Vault%20(Mid-air%20Apex).%20Enzo%20(straw%20hat%2C%20scarf)%20is%20at%20the%20highest%20point%20of%20his%20vault%20over%20a%20gap%20between%20giant%20ladyfingers.%20PURE%20WHITE%20BACKGROUND%20(%23FFFFFF).%20Style_%20Soft-matte%20tactile.png" alt="Mello Scoop Character" class="footer-bg-character">
 
         <div class="footer-inner-grid">
