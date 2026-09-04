@@ -222,7 +222,6 @@
             stroke-linecap: round;
         }
 
-        /* 移动端右侧抽屉菜单 */
         .mobile-drawer {
             position: fixed;
             top: 0;
@@ -250,7 +249,6 @@
             margin-bottom: 10px;
         }
 
-        /* 透明无背景、无边框的关闭按钮 */
         .mobile-close-btn {
             background: transparent;
             border: none;
@@ -281,7 +279,6 @@
             letter-spacing: 2px;
         }
 
-        /* 无框框的 Tasting Box 纯图文展示 */
         .mobile-drawer-tasting {
             margin-top: 24px;
             text-align: left;
@@ -1447,7 +1444,7 @@
             font-family: 'Quicksand', sans-serif;
             font-size: 26px;
             font-weight: 700;
-            color: var(--accent-brown);
+            color: #C89A5A;
             margin-bottom: 14px;
             letter-spacing: 0.5px;
             text-transform: lowercase;
@@ -1538,7 +1535,6 @@
             line-height: 1.6;
         }
 
-        /* Responsive & Mobile Optimization */
         @media (max-width: 1024px) {
             nav { display: none; }
             .mobile-hamburger { display: block; }
@@ -1669,7 +1665,6 @@
                 opacity: 1 !important;
             }
 
-            /* 修正 iPad 端 Footer 布局：让品牌、导航、联系方式完美呈现在平板尺寸 */
             .footer-inner-grid { 
                 grid-template-columns: 1.5fr 1fr 1fr !important; 
                 gap: 20px !important; 
@@ -1798,11 +1793,11 @@
         <a href="#faq" class="menu-link" onclick="toggleMenu()">FAQ</a>
         <a href="#booking" class="menu-link" onclick="toggleMenu()">Book Online</a>
 
-        <!-- 无框框的 Tasting Box 纯图文展示 -->
+        <!-- Tasting Box 纯图文展示，链接直接指向 WhatsApp -->
         <div class="mobile-drawer-tasting">
             <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG_1478.jpeg_2K_202609021458.jpeg" alt="Tasting Box">
             <p>Try our signature flavors before your event!</p>
-            <a href="#booking" onclick="toggleMenu()">Preorder Now</a>
+            <a href="https://wa.me/601112998136?text=Hi%20mello%20scoop,%20I%20would%20like%20to%20preorder%20a%20Tasting%20Box." target="_blank" onclick="toggleMenu()">Preorder Now</a>
         </div>
     </div>
 
@@ -2032,7 +2027,8 @@
                 <div class="tasting-box-info split-left">
                     <h2>Tasting Box Available for Preorder</h2>
                     <p>Not sure which flavor to choose? Try our signature tiramisu flavors at home before your big day!</p>
-                    <a href="#booking" class="btn-primary">Order Tasting Box</a>
+                    <!-- Tasting Box 预订按钮链接直接改为了连接至 WhatsApp -->
+                    <a href="https://wa.me/601112998136?text=Hi%20mello%20scoop,%20I%20would%20like%20to%20preorder%20a%20Tasting%20Box." target="_blank" class="btn-primary">Order Tasting Box</a>
                 </div>
                 <div class="tasting-box-img split-right">
                     <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG_1478.jpeg_2K_202609021458.jpeg" alt="Tasting box featuring pistachio and alcoholic tiramisu samples">
