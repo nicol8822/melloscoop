@@ -616,6 +616,7 @@
 
         .package-header {
             margin-bottom: 12px;
+            position: relative;
         }
 
         .package-header h3 {
@@ -1535,6 +1536,7 @@
             line-height: 1.6;
         }
 
+        /* 针对平板及以下屏幕适配（包括 iPad 竖屏与各类手机如 iPhone 17） */
         @media (max-width: 1024px) {
             nav { display: none; }
             .mobile-hamburger { display: block; }
@@ -1696,8 +1698,20 @@
                 max-width: none;
                 scroll-snap-align: center;
                 min-width: unset;
-                padding: 28px 22px !important;
+                padding: 28px 20px !important;
             }
+
+            /* 移动端专属优化：为 Signature 卡片的标题区域预留右侧绝对定位标签的空间，防止文字重叠 */
+            .package-card.featured .package-header {
+                padding-right: 95px !important;
+            }
+            .package-card.featured .package-badge-top {
+                top: 20px !important;
+                right: 16px !important;
+                font-size: 9px !important;
+                padding: 4px 10px !important;
+            }
+
             .packages-grid .package-header h3 {
                 font-size: 22px !important;
             }
@@ -1793,7 +1807,6 @@
         <a href="#faq" class="menu-link" onclick="toggleMenu()">FAQ</a>
         <a href="#booking" class="menu-link" onclick="toggleMenu()">Book Online</a>
 
-        <!-- Tasting Box 纯图文展示，链接直接指向 WhatsApp -->
         <div class="mobile-drawer-tasting">
             <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG_1478.jpeg_2K_202609021458.jpeg" alt="Tasting Box">
             <p>Try our signature flavors before your event!</p>
@@ -1843,8 +1856,8 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h1 class="float-in">“Small Souls,<span class="mobile-br"><br></span> Big Magic.”</h1>
-            <p class="float-in" style="transition-delay: 0.2s;">The Art of the Indulgence</p>
+            <h1 class="float-in">Moment of Indulgence</h1>
+            <p class="float-in" style="transition-delay: 0.2s;">Live-Scoop Tiramisu</p>
             <a href="#booking" class="btn-primary float-in" style="transition-delay: 0.4s;">Book Your Event</a>
         </div>
 
@@ -2027,7 +2040,6 @@
                 <div class="tasting-box-info split-left">
                     <h2>Tasting Box Available for Preorder</h2>
                     <p>Not sure which flavor to choose? Try our signature tiramisu flavors at home before your big day!</p>
-                    <!-- Tasting Box 预订按钮链接直接改为了连接至 WhatsApp -->
                     <a href="https://wa.me/601112998136?text=Hi%20mello%20scoop,%20I%20would%20like%20to%20preorder%20a%20Tasting%20Box." target="_blank" class="btn-primary">Order Tasting Box</a>
                 </div>
                 <div class="tasting-box-img split-right">
