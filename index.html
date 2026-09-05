@@ -1778,7 +1778,23 @@
             }
         }
 
+        /* 响应式控制：移动端与桌面端显隐控制 */
+        @media (max-width: 1024px) {
+            .hero-slide-mobile-only {
+                display: block !important;
+            }
+            .hero-slide-desktop-only {
+                display: none !important;
+            }
+        }
+
         @media (min-width: 1025px) {
+            .hero-slide-mobile-only {
+                display: none !important;
+            }
+            .hero-slide-desktop-only {
+                display: block !important;
+            }
             .hero-content h1 .mobile-br {
                 display: none;
             }
@@ -1843,8 +1859,9 @@
             <div class="hero-slide">
                 <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Characters_climbing_tiramisu_layers_2K_202609032014.jpeg" alt="Live-scooped pistachio tiramisu and alcoholic tiramisu at a corporate event dessert bar">
             </div>
+            <!-- 原第三个空幻灯片已填入指定的新图片，现桌面端和移动端均可正常展示该图片 -->
             <div class="hero-slide">
-                <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Characters_climbing_tiramisu_layers_2K_202609032024.jpeg" alt="Dessert bar in Penang featuring premium tiramisu cart for birthday party catering">
+                <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG_3766.jpeg_2K_202609051556.jpeg" alt="Mello Scoop mobile tiramisu dessert cart setup in Penang">
             </div>
             <div class="hero-slide">
                 <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Characters_exploring_tiramisu_ca…_2K_202609032021.jpeg" alt="Brand launch catering with a mobile dessert cart and live-scooped tiramisu station">
