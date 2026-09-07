@@ -34,6 +34,9 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            /* 关键优化：启用页面整体的 iOS 惯性滚动，并允许垂直方向自由滑动 */
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
         }
 
         .float-in {
@@ -1686,7 +1689,8 @@
                 overflow-x: auto;
                 overflow-y: hidden;
                 scroll-snap-type: x mandatory;
-                touch-action: pan-x;
+                /* 修复点：允许横向和纵向手势完美共存，解决手机端上下滚动卡顿问题 */
+                touch-action: pan-x pan-y;
                 -webkit-overflow-scrolling: touch;
                 gap: 14px;
                 padding: 10px 16px 16px 16px;
@@ -1701,7 +1705,6 @@
                 padding: 28px 20px !important;
             }
 
-            /* 移动端专属优化：为 Signature 卡片的标题区域预留右侧绝对定位标签的空间，防止文字重叠 */
             .package-card.featured .package-header {
                 padding-right: 95px !important;
             }
@@ -1778,7 +1781,6 @@
             }
         }
 
-        /* 响应式控制：移动端与桌面端显隐控制 */
         @media (max-width: 1024px) {
             .hero-slide-mobile-only {
                 display: block !important;
@@ -1859,7 +1861,6 @@
             <div class="hero-slide">
                 <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Characters_climbing_tiramisu_layers_2K_202609032014.jpeg" alt="Live-scooped pistachio tiramisu and alcoholic tiramisu at a corporate event dessert bar">
             </div>
-            <!-- 原第三个空幻灯片已填入指定的新图片，现桌面端和移动端均可正常展示该图片 -->
             <div class="hero-slide">
                 <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG_3766.jpeg_2K_202609051556.jpeg" alt="Mello Scoop mobile tiramisu dessert cart setup in Penang">
             </div>
