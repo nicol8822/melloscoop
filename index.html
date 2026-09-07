@@ -1230,6 +1230,7 @@
             color: var(--accent-brown);
         }
 
+        /* 统一输入框与下拉框样式，并解决 iOS date 溢出问题 */
         .form-group-item input, .form-group-item select {
             padding: 14px;
             border-radius: 12px;
@@ -1242,6 +1243,14 @@
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
+        }
+
+        input[type="date"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
         }
 
         .flavour-section-title {
@@ -1751,7 +1760,6 @@
             .how-arrow { transform: rotate(90deg); padding-bottom: 0; }
             header, section, footer { padding-left: 16px; padding-right: 16px; }
             
-            /* 手机端适量缩小大标题字号，防止溢出换行不美观 */
             .hero-content h1 { 
                 font-size: 28px !important; 
                 white-space: normal !important; 
