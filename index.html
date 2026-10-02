@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>Mello Scoop — Mobile Tiramisu Cart & Dessert Bar in Penang</title>
-    <meta name="description" content="Experience the ultimate mobile dessert cart in Penang. Offering live-scooped pistachio tiramisu & alcoholic tiramisu for weddings, birthday parties, corporate brand launches, and annual dinners.">
+    <title>Mello Scoop — Tiramisu Cart & Dessert Bar in Penang</title>
+    <meta name="description" content="Experience the tiramisu bar station in Penang. Offering live-scooped pistachio tiramisu & alcoholic tiramisu for weddings, birthday parties, corporate brand launches, and annual dinners.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1300,19 +1300,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            padding: 12px 14px;
-            border-radius: 10px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
             cursor: pointer;
-            transition: border-color 0.15s ease, background 0.15s ease;
+            transition: border-color 0.15s ease;
             width: 100%;
             box-sizing: border-box;
         }
 
         .addon-checkbox-item:has(:checked) {
             border-color: var(--caramel);
-            background: #fffaf2;
         }
 
         .addon-left {
@@ -1340,28 +1337,37 @@
             white-space: nowrap;
         }
 
+        .addon-qty {
+            width: 56px;
+            padding: 4px 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
         .estimated-total-box {
-            background: var(--accent-brown);
-            border-radius: 16px;
-            padding: 20px 24px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
+            padding: 16px 0 0;
+            border-top: 1px solid var(--accent-brown);
             width: 100%;
             box-sizing: border-box;
-            margin-top: 28px;
+            margin-top: 20px;
         }
 
         .est-title {
             font-size: 13px;
-            color: #fff;
-            opacity: .7;
+            color: var(--text-muted);
         }
 
         .est-price-val {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            color: #fff;
+            color: var(--accent-brown);
             font-family: 'Playfair Display', serif;
         }
 
@@ -1731,11 +1737,28 @@
                 font-size: 16px !important;
             }
 
-            .how-it-works-grid {
-                flex-direction: column;
-                gap: 30px;
+            .how-it-works-section {
+                padding: 32px 16px !important;
+                margin-top: 40px !important;
             }
-            .how-arrow { transform: rotate(90deg); padding-bottom: 0; }
+            .how-it-works-grid {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-snap-type: x mandatory;
+                touch-action: pan-x pan-y;
+                -webkit-overflow-scrolling: touch;
+                gap: 14px;
+                padding: 10px 2px;
+                justify-content: flex-start;
+                align-items: stretch;
+            }
+            .how-step {
+                flex: 0 0 72%;
+                scroll-snap-align: center;
+            }
+            .how-arrow { display: none; }
             header, section, footer { padding-left: 16px; padding-right: 16px; }
             
             .hero-content h1 { 
@@ -1895,7 +1918,7 @@
         <div class="section-inner">
             <div class="section-header float-in">
                 <span>Event Catering</span>
-                <h2>Mobile Dessert Cart Packages in Penang</h2>
+                <h2>Tiramisu Bar Station Packages in Penang</h2>
                 <div class="swipe-hint" style="text-align: center; font-size: 11px; color: var(--caramel); margin-top: 8px; letter-spacing: 1px;">
                     ← Swipe sideways to view all packages →
                 </div>
@@ -1908,15 +1931,15 @@
                         <div class="capacity-badge">100 PAX CAPACITY</div>
                     </div>
                     <div class="guest-match">Best for 80–100 Guests</div>
-                    <span class="package-price">RM 1,450</span>
-                    <p class="package-desc">Ideal for intimate gatherings, birthday party catering, and boutique luxury pop-up celebrations.</p>
+                    <span class="package-price">RM 1,500</span>
+                    <p class="package-desc">Ideal for intimate gatherings, birthday parties, bridal or baby showers, and small pop-up celebrations.</p>
                     <ul class="package-features-list">
                         <li>✓ Live-scooped tiramisu bar station with LED lighting</li>
                         <li>✓ 2 trays of handcrafted tiramisu</li>
                         <li>✓ 2 hours on-site service with 1 dedicated staff</li>
                         <li>✓ Serving cups, spoons & napkins</li>
                         <li>✓ Standard white & green floral decor setup</li>
-                        <li>✓ Complimentary Delivery & Setup within Penang Butterworth, Prai & BM. Surcharge applies elsewhere.</li>
+                        <li>✓ Complimentary Delivery & Setup within Penang Butterworth & Prai. Surcharge applies elsewhere.</li>
                     </ul>
                     <button class="package-btn" onclick="selectPackage('Petite'); document.getElementById('booking').scrollIntoView();">Select Petite</button>
                 </div>
@@ -1928,15 +1951,15 @@
                         <div class="capacity-badge">150 PAX CAPACITY</div>
                     </div>
                     <div class="guest-match">Best for 120–150 Guests</div>
-                    <span class="package-price">RM 2,000</span>
-                    <p class="package-desc">The ultimate wedding dessert cart experience featuring our hallmark live ritual.</p>
+                    <span class="package-price">RM 2,200</span>
+                    <p class="package-desc">Perfect for wedding receptions, milestone celebrations, and after-parties — scooped fresh in front of your guests.</p>
                     <ul class="package-features-list">
                         <li>✓ Live-scooped tiramisu bar station with LED lighting</li>
                         <li>✓ 3 trays of handcrafted tiramisu</li>
                         <li>✓ 2 hours on-site service with 1 dedicated staff</li>
                         <li>✓ Serving cups, spoons & napkins</li>
                         <li>✓ Standard white & green floral decor setup</li>
-                        <li>✓ Complimentary Delivery & Setup within Penang Butterworth, Prai & BM. Surcharge applies elsewhere.</li>
+                        <li>✓ Complimentary Delivery & Setup within Penang Butterworth & Prai. Surcharge applies elsewhere.</li>
                     </ul>
                     <button class="package-btn" onclick="selectPackage('Signature'); document.getElementById('booking').scrollIntoView();">Select Signature</button>
                 </div>
@@ -1947,15 +1970,15 @@
                         <div class="capacity-badge">200 PAX CAPACITY</div>
                     </div>
                     <div class="guest-match">Best for 160–200 Guests</div>
-                    <span class="package-price">RM 2,550</span>
-                    <p class="package-desc">Designed for large corporate event dessert bar setups, brand launch catering, and grand annual dinners.</p>
+                    <span class="package-price">RM 2,800</span>
+                    <p class="package-desc">Designed for large corporate events, brand launches, and annual dinners.</p>
                     <ul class="package-features-list">
                         <li>✓ Live-scooped tiramisu bar station with LED lighting</li>
                         <li>✓ 4 trays of handcrafted tiramisu</li>
                         <li>✓ 2 hours on-site service with 1 dedicated staff</li>
                         <li>✓ Serving cups, spoons & napkins</li>
                         <li>✓ Standard white & green floral decor setup</li>
-                        <li>✓ Complimentary Delivery & Setup within Penang Butterworth, Prai & BM. Surcharge applies elsewhere.</li>
+                        <li>✓ Complimentary Delivery & Setup within Penang Butterworth & Prai. Surcharge applies elsewhere.</li>
                     </ul>
                     <button class="package-btn" onclick="selectPackage('Grande'); document.getElementById('booking').scrollIntoView();">Select Grande</button>
                 </div>
@@ -1981,7 +2004,7 @@
                     </div>
                     <div class="flavor-info">
                         <h3>Classic Alcoholic Tiramisu</h3>
-                        <p>Crafted with espresso, coffee liqueur, and Irish cream. Rich and aromatic.</p>
+                        <p>Ladyfingers soaked in single-origin Sumatra Mandheling espresso, spiked with Kahl&uacute;a and Baileys Irish Cream, layered with mascarpone and finished with 100% pure cocoa powder.</p>
                     </div>
                 </div>
                 <div class="flavor-card float-in" style="transition-delay: 0.2s;">
@@ -1991,7 +2014,7 @@
                     </div>
                     <div class="flavor-info">
                         <h3>Alcohol-Free Tiramisu</h3>
-                        <p>Zero alcohol, made with natural vanilla extract and Mandheling coffee.</p>
+                        <p>Ladyfingers soaked in Mandheling espresso, layered with mascarpone, finished with 100% pure cocoa powder and a touch of sea salt.</p>
                     </div>
                 </div>
                 <div class="flavor-card float-in split-right">
@@ -2002,7 +2025,7 @@
                     <div class="flavor-info">
                         <h3>★ Premium Pistachio Tiramisu</h3>
                         <div class="flavor-price">+RM 220 / Tray</div>
-                        <p>Creamy mascarpone cream blended with 100% premium pistachio paste.</p>
+                        <p>Ladyfingers layered with mascarpone blended with 100% premium pistachio paste, finished with a pistachio crunch.</p>
                     </div>
                 </div>
             </div>
@@ -2011,6 +2034,9 @@
             <div class="how-it-works-section float-in">
                 <div class="section-header" style="margin-bottom: 40px;">
                     <h2>How It Works</h2>
+                    <div class="swipe-hint" style="text-align: center; font-size: 11px; color: var(--caramel); margin-top: 8px; letter-spacing: 1px;">
+                        ← Swipe sideways to see all steps →
+                    </div>
                 </div>
                 <div class="how-it-works-grid">
                     <div class="how-step">
@@ -2122,16 +2148,16 @@
             </div>
             <div class="faq-container float-in">
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAccordion(this)">What does the mobile dessert cart service include? <span>+</span></div>
-                    <div class="faq-answer">We provide professional staff equipped with our custom mobile dessert cart and freshly prepared tiramisu directly to your event venue, delivering an immersive live-scoop experience for your guests.</div>
+                    <div class="faq-question" onclick="toggleAccordion(this)">What does the tiramisu bar station service include? <span>+</span></div>
+                    <div class="faq-answer">We provide professional staff equipped with our tiramisu bar station and freshly prepared tiramisu directly to your event venue, delivering an immersive live-scoop experience for your guests.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAccordion(this)">How far in advance should we book the tiramisu cart? <span>+</span></div>
+                    <div class="faq-question" onclick="toggleAccordion(this)">How far in advance should we book the tiramisu bar station? <span>+</span></div>
                     <div class="faq-answer">We recommend placing your order at least 2–3 weeks in advance to secure your preferred date, but early booking is suggested to secure your spot!</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleAccordion(this)">How do I confirm my final order and booking date? <span>+</span></div>
-                    <div class="faq-answer">Once you select your date and check availability, you can contact us directly via the WhatsApp button at the bottom right to pay the deposit and confirm your booking.</div>
+                    <div class="faq-answer">Once you’ve selected your date, package and checked availability, continue on WhatsApp to confirm the details and arrange your deposit.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleAccordion(this)">Is the deposit refundable if the event is cancelled? <span>+</span></div>
@@ -2142,20 +2168,20 @@
                     <div class="faq-answer">A 50% deposit is required via TNG or bank transfer to secure your event date. The remaining balance must be settled 1–2 days prior to the event.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAccordion(this)">What is the space requirement for setting up the live scoop cart? <span>+</span></div>
-                    <div class="faq-answer">Our dessert cart is compact and typically requires an area of approximately 1.8m x 1.2m, making it flexible for both indoor hotel ballrooms and outdoor garden venues.</div>
+                    <div class="faq-question" onclick="toggleAccordion(this)">What is the space requirement for setting up the tiramisu bar station? <span>+</span></div>
+                    <div class="faq-answer">Our tiramisu bar station is compact and typically requires an area of approximately 1.8m x 1.2m, making it flexible for both indoor hotel ballrooms and outdoor garden venues.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleAccordion(this)">Do your service staff handle the serving process? <span>+</span></div>
                     <div class="faq-answer">Yes! Our service crew will take care of setup and serving throughout the event.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleAccordion(this)">Is electricity required for the dessert cart setup? <span>+</span></div>
+                    <div class="faq-question" onclick="toggleAccordion(this)">Is electricity required for the tiramisu bar station setup? <span>+</span></div>
                     <div class="faq-answer">Yes. A standard power outlet is required to power the illuminated logo and canopy lights. Please ensure a power point is available near the setup area.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleAccordion(this)">Is delivery and setup included? <span>+</span></div>
-                    <div class="faq-answer">Yes! Complimentary delivery and setup are included for events in Butterworth, Perai, and Bukit Mertajam. For events outside these areas, a delivery surcharge may apply depending on the event location. We’ll confirm the exact fee with you before booking.</div>
+                    <div class="faq-answer">Yes! Complimentary delivery and setup are included for events in Butterworth and Perai. For events outside these areas, a delivery surcharge may apply depending on the event location. We’ll confirm the exact fee with you before booking.</div>
                 </div>
             </div>
         </div>
@@ -2201,9 +2227,9 @@
                                 <label for="select-package">Package</label>
                                 <select id="select-package" onchange="updateTraySelectors()">
                                     <option value="" disabled selected>Select package</option>
-                                    <option value="Petite" data-price="1450" data-trays="2">Petite · 2 trays · RM1,450</option>
-                                    <option value="Signature" data-price="2000" data-trays="3">Signature · 3 trays · RM2,000</option>
-                                    <option value="Grande" data-price="2550" data-trays="4">Grande · 4 trays · RM2,550</option>
+                                    <option value="Petite" data-price="1500" data-trays="2">Petite · 2 trays · RM1,500</option>
+                                    <option value="Signature" data-price="2200" data-trays="3">Signature · 3 trays · RM2,200</option>
+                                    <option value="Grande" data-price="2800" data-trays="4">Grande · 4 trays · RM2,800</option>
                                 </select>
                             </div>
                             <div class="form-group-item">
@@ -2239,7 +2265,7 @@
                         <div class="delivery-note-box">
                             <div class="delivery-note-header">Complimentary delivery &amp; setup</div>
                             <div class="delivery-note-body">
-                                Butterworth · Perai · Bukit Mertajam<br>
+                                Butterworth · Perai<br>
                                 A delivery fee applies outside this area — we'll confirm with you on WhatsApp.
                             </div>
                         </div>
@@ -2274,6 +2300,16 @@
                                 <span>Additional service hour</span>
                             </div>
                             <div class="addon-price">+RM 100 / hr</div>
+                        </label>
+
+                        <label class="addon-checkbox-item">
+                            <div class="addon-left">
+                                <input type="checkbox" id="addon-creampuff" onchange="calculateTotal()">
+                                <span>Cream puff add-on &middot;</span>
+                                <input type="number" id="addon-creampuff-qty" class="addon-qty" value="50" min="50" step="10" onchange="calculateTotal()">
+                                <span>pcs</span>
+                            </div>
+                            <div class="addon-price">RM 4 each &middot; min 50 pcs</div>
                         </label>
                     </div>
                 </div>
@@ -2507,17 +2543,26 @@
 
             const addonMirrorChecked = document.getElementById('addon-mirror')?.checked || false;
             const addonHourChecked = document.getElementById('addon-hour')?.checked || false;
-            
+            const addonCreampuffChecked = document.getElementById('addon-creampuff')?.checked || false;
+            const creampuffQtyInput = document.getElementById('addon-creampuff-qty');
+            let creampuffQty = creampuffQtyInput ? (parseInt(creampuffQtyInput.value) || 0) : 0;
+            if (creampuffQty < 50) {
+                creampuffQty = 50;
+                if (creampuffQtyInput) creampuffQtyInput.value = 50;
+            }
+
             let addonTotal = 0;
             if (addonMirrorChecked) addonTotal += 150;
             if (addonHourChecked) addonTotal += 100;
+            if (addonCreampuffChecked) addonTotal += creampuffQty * 4;
 
             const estimatedTotal = basePrice + pistachioUpgradeTotal + addonTotal;
             if(totalDisplay) totalDisplay.innerText = "RM " + estimatedTotal.toLocaleString();
 
             return {
                 packageName: selectedOption.text.split(' · ')[0],
-                basePrice, pistachioCount, pistachioUpgradeTotal, addonMirrorChecked, addonHourChecked, addonTotal, estimatedTotal
+                basePrice, pistachioCount, pistachioUpgradeTotal, addonMirrorChecked, addonHourChecked,
+                addonCreampuffChecked, creampuffQty, addonTotal, estimatedTotal
             };
         }
 
@@ -2561,6 +2606,7 @@
             let addonsSummary = [];
             if (calc.addonMirrorChecked) addonsSummary.push("Custom Calligraphy Welcome Mirror Rental (+RM150)");
             if (calc.addonHourChecked) addonsSummary.push("Additional Service Hour (+RM100/hr)");
+            if (calc.addonCreampuffChecked) addonsSummary.push(`Cream Puff Add-on (${calc.creampuffQty} pcs × RM4 = +RM${(calc.creampuffQty * 4).toLocaleString()})`);
 
             const venueString = venueInput ? ` Venue: ${venueInput}.` : "";
             const areaString = areaInput ? ` Area / postcode: ${areaInput}.` : "";
@@ -2572,6 +2618,7 @@
             let pistachioLine = calc.pistachioCount > 0 ? `• Premium Pistachio Upgrade: ${calc.pistachioCount} × RM220 = +RM${calc.pistachioUpgradeTotal.toLocaleString()}<br>` : "";
             let mirrorLine = calc.addonMirrorChecked ? `• Custom Calligraphy Welcome Mirror Rental: +RM150<br>` : "";
             let hourLine = calc.addonHourChecked ? `• Additional Service Hour: +RM100 / hr<br>` : "";
+            let creampuffLine = calc.addonCreampuffChecked ? `• Cream Puff Add-on: ${calc.creampuffQty} pcs \u00d7 RM4 = +RM${(calc.creampuffQty * 4).toLocaleString()}<br>` : "";
             let venueLine = venueInput ? `• Venue: ${venueInput}<br>` : "";
             let areaLine = areaInput ? `• Area / postcode: ${areaInput}<br>` : "";
 
@@ -2586,6 +2633,7 @@
                         ${pistachioLine}
                         ${mirrorLine}
                         ${hourLine}
+                        ${creampuffLine}
                         ${venueLine}
                         ${areaLine}
                         • <strong>Estimated Total: RM ${calc.estimatedTotal.toLocaleString()}</strong>
