@@ -1831,7 +1831,16 @@
                 color: var(--text-muted) !important;
             }
         }
-    </style>
+    /* Identical transparent navigation on both pages */
+header{position:absolute!important;top:0;left:0;right:0;z-index:1000;width:100%;max-width:none;height:100px;min-height:0;margin:0;padding:28px 64px;display:flex;justify-content:space-between;align-items:center;gap:24px;background:transparent!important;border:0!important;backdrop-filter:none!important;mix-blend-mode:difference;color:#fff}
+header .logo-container{display:flex;align-items:center;gap:10px;text-decoration:none}header .logo-text{font-family:'Plus Jakarta Sans',Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:.5px;text-transform:lowercase;color:#fff;white-space:nowrap}header nav{display:flex;position:static;gap:32px;align-items:center;padding:0;background:transparent;border:0}header nav a{font-family:'Plus Jakarta Sans',Arial,sans-serif;font-size:13px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;padding:0;color:#fff;text-decoration:none;text-shadow:none}header nav a:hover{opacity:.7;color:#fff}header .book-online-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;color:#fff;border:0;box-shadow:none}header .mobile-hamburger{display:none;background:none;border:0;padding:10px;cursor:pointer}header .mobile-hamburger svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+@media(max-width:1024px){header{padding:18px 24px;height:80px}.logo-text{font-size:20px}header nav{display:none;position:absolute;top:100%;left:0;right:0;padding:25px;background:#362a22;flex-direction:column;gap:24px}header nav.is-open{display:flex}header .mobile-hamburger{display:block}header .header-right-actions{gap:4px!important}}@media(max-width:650px){header{padding:14px 6%;height:72px}header .logo-text{font-size:19px}header .book-online-btn{width:36px;height:36px}}
+header{mix-blend-mode:normal!important;background:transparent!important}header .logo-text,header nav a,header nav a:hover,header .book-online-btn{color:#ffffff!important}header .mobile-hamburger svg{stroke:#ffffff!important}
+/* Stable spacing between the hero headline and its booking action. */
+.hero-content{gap:44px;padding-top:30px}.hero-content h1{margin-bottom:0!important;transform:none!important;line-height:1.25}.hero-content>.btn-primary{margin:0;flex-shrink:0}
+@media(max-width:1024px){.hero-content{gap:36px}}
+@media(max-width:650px){.hero-content{gap:30px;padding-top:20px}.hero-content h1{font-size:27px!important;line-height:1.3!important;transform:none!important}.hero-content>.btn-primary{font-size:11px;padding:14px 28px}}
+</style>
 </head>
 <body>
 
@@ -1847,7 +1856,7 @@
         <a href="#packages" class="menu-link" onclick="toggleMenu()">Packages</a>
         <a href="#flavors" class="menu-link" onclick="toggleMenu()">Flavors</a>
         <a href="#gallery" class="menu-link" onclick="toggleMenu()">Gallery</a>
-        <a href="#characters" class="menu-link" onclick="toggleMenu()">Characters</a>
+        <a href="mello-scoop-characters-refined.html" class="menu-link" onclick="toggleMenu()">Characters</a>
         <a href="#faq" class="menu-link" onclick="toggleMenu()">FAQ</a>
         <a href="#booking" class="menu-link" onclick="toggleMenu()">Book Online</a>
 
@@ -1859,21 +1868,21 @@
     </div>
 
     <header>
-        <a href="#" class="logo-container">
+        <a href="mello-scoop-home.html" class="logo-container">
             <span class="logo-text">mello scoop</span>
         </a>
-        <nav>
-            <a href="#packages">Packages</a>
-            <a href="#flavors">Flavors</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#characters">Characters</a>
-            <a href="#faq">FAQ</a>
+        <nav id="characterNav" aria-label="Main navigation">
+            <a href="mello-scoop-home.html#packages">Packages</a>
+            <a href="mello-scoop-home.html#flavors">Flavors</a>
+            <a href="mello-scoop-home.html#gallery">Gallery</a>
+            <a href="mello-scoop-characters-refined.html">Characters</a>
+            <a href="mello-scoop-home.html#faq">FAQ</a>
         </nav>
         <div class="header-right-actions" style="display: flex; align-items: center; gap: 8px;">
-            <a href="#booking" class="book-online-btn" aria-label="Book Online">
+            <a href="mello-scoop-home.html#booking" class="book-online-btn" aria-label="Book Online">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             </a>
-            <button class="mobile-hamburger" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">
+            <button class="mobile-hamburger" aria-expanded="false" aria-controls="characterNav" aria-label="Toggle Navigation Menu">
                 <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
         </div>
@@ -2130,7 +2139,7 @@
                     <span>The Whimsical World</span>
                     <h3>Small Souls, Big Magic</h3>
                     <p>Meet our signature miniature chefs who bring a touch of whimsy and wonder to every creation. Handcrafted with love and character, these miniature chefs watch over every delicious creation with meticulous care.</p>
-                    <a href="#booking" class="btn-primary">Discover More</a>
+                    <a href="mello-scoop-characters-refined.html" class="btn-primary">Discover More</a>
                 </div>
             </div>
         </div>
@@ -2643,5 +2652,12 @@
             `;
         }
     </script>
+<script>
+const sharedMenu=document.querySelector('header .mobile-hamburger'), sharedNav=document.querySelector('#characterNav');
+sharedMenu.addEventListener('click',()=>{const open=sharedNav.classList.toggle('is-open');sharedMenu.setAttribute('aria-expanded',String(open))});sharedNav.addEventListener('click',event=>{if(event.target.closest('a')){sharedNav.classList.remove('is-open');sharedMenu.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',event=>{if(event.key==='Escape'){sharedNav.classList.remove('is-open');sharedMenu.setAttribute('aria-expanded','false')}});
+</script>
 </body>
 </html>
+
+
+
