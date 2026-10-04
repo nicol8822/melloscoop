@@ -1860,8 +1860,8 @@ header .book-online-btn,header .mobile-hamburger{min-width:44px;min-height:44px}
 .flavor-card{flex-basis:86%}.packages-grid .package-card{flex-basis:88%}
 .tasting-box-banner,.characters-showcase{padding:20px;gap:22px}
 .tasting-box-info p,.characters-text p{line-height:1.8!important}
-.faq-question{min-height:48px}.gallery-card{width:82vw;height:62vw;max-height:360px}
-.footer-inner-grid{grid-template-columns:1fr 1fr!important;gap:28px 20px!important}
+.faq-question{min-height:48px}
+
 }
 </style>
 <style id="tasting-real-photo">
@@ -1979,9 +1979,23 @@ html{scroll-padding-top:20px}header{padding-left:20px!important;padding-right:20
 .tasting-box-banner{padding:22px!important;border-radius:18px;gap:23px;margin-bottom:40px}.tasting-box-banner .tasting-box-img{aspect-ratio:4/3;width:100%}.tasting-box-info h2{font-size:24px!important}.tasting-box-info p{font-size:13px!important}.tasting-box-info .btn-primary{min-height:46px}
 .packages-grid .package-card{flex-basis:90%}.form-group-item input,.form-group-item select,.form-group-item textarea{font-size:16px!important;max-width:100%}
 .mobile-drawer{padding-bottom:max(24px,env(safe-area-inset-bottom))}.mobile-drawer a,.mobile-drawer button{min-height:44px}
-.footer-inner-grid{gap:26px 18px!important}section[id]{scroll-margin-top:20px}
+section[id]{scroll-margin-top:20px}
 }
 @media(max-width:360px){.process-list{grid-template-columns:1fr;gap:22px}.flavor-card{flex-basis:92%}.hero-content h1{font-size:25px!important}}
+</style>
+
+<style id="mobile-footer-restored">
+.mobile-drawer-tasting img{aspect-ratio:4/3!important;object-fit:cover!important;object-position:50% 78%!important;filter:none!important}
+@media(max-width:768px){
+footer{padding:42px 24px 24px!important}
+.footer-inner-grid{grid-template-columns:1fr!important;gap:30px!important;padding-bottom:24px}
+.footer-inner-grid>.footer-col:last-child{padding-right:135px;min-height:110px}
+.footer-bg-character{width:130px!important;right:12px!important;bottom:95px!important;animation:none!important}
+.footer-bottom-bar{margin:0 auto!important;padding-top:16px;border-top:1px solid var(--border-color)}
+.footer-copyright-text{font-size:10px!important;line-height:1.7;overflow-wrap:anywhere}
+.footer-registration{display:block}
+body{margin-bottom:0;padding-bottom:0}
+}
 </style>
 </head>
 <body>
@@ -2468,7 +2482,7 @@ html{scroll-padding-top:20px}header{padding-left:20px!important;padding-right:20
             </div>
         </div>
         <div class="footer-bottom-bar">
-            <div class="footer-copyright-text">© 2026 HELLO MELLO ENTERPRISE (202603201394 / KT0618534-U)</div>
+            <div class="footer-copyright-text">© 2026 HELLO MELLO ENTERPRISE <span class="footer-registration">(202603201394 / KT0618534-U)</span></div>
         </div>
     </footer>
 
