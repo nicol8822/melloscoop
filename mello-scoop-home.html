@@ -1989,18 +1989,20 @@ section[id]{scroll-margin-top:20px}
 @media(max-width:768px){
 footer{padding:42px 24px 24px!important}
 .footer-inner-grid{grid-template-columns:1fr!important;gap:30px!important;padding-bottom:24px}
-.footer-inner-grid>.footer-col:last-child{padding-right:135px;min-height:110px}
-.footer-bg-character{width:130px!important;right:12px!important;bottom:95px!important;animation:none!important}
+
+.footer-bg-character{width:190px!important;right:0!important;bottom:0!important;animation:floatBounceFooter 4s ease-in-out infinite!important}
 .footer-bottom-bar{margin:0 auto!important;padding-top:16px;border-top:1px solid var(--border-color)}
 .footer-copyright-text{font-size:10px!important;line-height:1.7;overflow-wrap:anywhere}
-.footer-registration{display:block}
+.footer-registration{display:inline}
 body{margin-bottom:0;padding-bottom:0}
 }
 </style>
-</head>
+<style>
+.alcohol-mark{display:inline-flex;align-items:center;gap:7px;font-family:'Plus Jakarta Sans',Arial,sans-serif;font-size:10px;font-weight:500;line-height:1.5;letter-spacing:.035em;color:#725239;white-space:nowrap}.alcohol-mark.is-free{color:#65705b}.alcohol-mark svg{width:13px;height:15px;flex-shrink:0}.flavor-img-container{position:relative}.alcohol-mark{pointer-events:none}
+.alcohol-mark{display:flex;width:fit-content;border-top:1px solid #cbbda7;padding-top:9px;margin-top:15px;letter-spacing:0;font-size:11px}</style><style id="package-quote-pricing">.package-from{display:block;font:500 10px/1.6 'Plus Jakarta Sans',Arial;color:var(--text-muted);letter-spacing:.03em;margin-bottom:5px}.package-quote-note{max-width:720px;margin:24px auto 0;text-align:center;font-size:12px;line-height:1.8;color:var(--text-muted)}@media(max-width:650px){.package-quote-note{padding:0 20px;font-size:11px}}</style><style id="mobile-addon-price-alignment">@media(max-width:650px){.addon-checkbox-item{gap:7px;align-items:flex-start}.addon-left{width:100%;min-width:0;flex-wrap:wrap;row-gap:8px}.addon-left>span:first-of-type{flex:1;min-width:0}.addon-price{width:100%;margin-left:auto;text-align:right;font-variant-numeric:tabular-nums}.addon-left .addon-qty{flex-shrink:0}}</style><link rel="icon" href="assets/mello-logo-icon.ico?v=4"><link rel="icon" type="image/png" sizes="128x128" href="assets/mello-logo-icon.png?v=4"><style id="package-swipe-hint-style">#packages .package-swipe-hint{display:none!important}@media(max-width:1024px){#packages .package-swipe-hint{display:flex!important;justify-content:center;align-items:center;gap:9px;margin-top:12px;font:400 10px/1.7 'Plus Jakarta Sans',Arial;color:var(--text-muted);letter-spacing:.03em}#packages .package-swipe-hint span{font-size:17px;line-height:1}#packages .packages-grid{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}#packages .package-card{scroll-snap-align:start}}@media(max-width:650px){#packages .packages-grid .package-card{flex-basis:86%}}</style></head>
 <body>
 
-    <a href="https://wa.me/601112998136" class="floating-whatsapp" aria-label="WhatsApp Us" target="_blank">
+    <a href="https://wa.me/melloscoop" class="floating-whatsapp" aria-label="WhatsApp Us" target="_blank">
         <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
     </a>
 
@@ -2011,7 +2013,7 @@ body{margin-bottom:0;padding-bottom:0}
             <button class="mobile-close-btn" onclick="toggleMenu()" aria-label="Close Menu">×</button>
         </div>
         <a href="index.html#packages" class="menu-link" onclick="toggleMenu()">Packages</a>
-        <a href="index.html#flavors" class="menu-link" onclick="toggleMenu()">Flavors</a>
+        <a href="index.html#flavors" class="menu-link" onclick="toggleMenu()">Flavours</a>
         <a href="index.html#gallery" class="menu-link" onclick="toggleMenu()">Gallery</a>
         <a href="characters/" class="menu-link" onclick="toggleMenu()">Characters</a>
         <a href="index.html#faq" class="menu-link" onclick="toggleMenu()">FAQ</a>
@@ -2019,8 +2021,8 @@ body{margin-bottom:0;padding-bottom:0}
 
         <div class="mobile-drawer-tasting">
             <img src="assets/tasting-box-studio-v2.webp" alt="Tasting Box">
-            <p>Try our signature flavors before your event!</p>
-            <a href="https://wa.me/601112998136?text=Hi%20mello%20scoop,%20I%20would%20like%20to%20preorder%20a%20Tasting%20Box." target="_blank" onclick="toggleMenu()">Preorder Now</a>
+            <p>Try our signature flavours before your event!</p>
+            <a href="https://wa.me/melloscoop?text=Hi%20mello%20scoop,%20I%20would%20like%20to%20preorder%20a%20Tasting%20Box." target="_blank" onclick="toggleMenu()">Preorder Now</a>
         </div>
     </div>
 
@@ -2030,7 +2032,7 @@ body{margin-bottom:0;padding-bottom:0}
         </a>
         <nav id="characterNav" aria-label="Main navigation">
             <a href="index.html#packages">Packages</a>
-            <a href="index.html#flavors">Flavors</a>
+            <a href="index.html#flavors">Flavours</a>
             <a href="index.html#gallery">Gallery</a>
             <a href="characters/">Characters</a>
             <a href="index.html#faq">FAQ</a>
@@ -2085,9 +2087,7 @@ body{margin-bottom:0;padding-bottom:0}
             <div class="section-header float-in">
                 <span>Event Catering</span>
                 <h2>Tiramisu Bar Station Packages in Penang</h2>
-                <div class="swipe-hint" style="text-align: center; font-size: 11px; color: var(--caramel); margin-top: 8px; letter-spacing: 1px;">
-                    ← Swipe sideways to view all packages →
-                </div>
+                <div class="swipe-hint package-swipe-hint">Swipe to explore <span aria-hidden="true">→</span></div>
             </div>
             
             <div class="packages-grid">
@@ -2097,7 +2097,7 @@ body{margin-bottom:0;padding-bottom:0}
                         <div class="capacity-badge">100 PAX CAPACITY</div>
                     </div>
                     <div class="guest-match">Best for 80–100 Guests</div>
-                    <span class="package-price">RM 1,500</span>
+                    <span class="package-price"><small class="package-from">Starting from</small>RM 1,500</span>
                     <p class="package-desc">Ideal for intimate gatherings, birthday parties, bridal or baby showers, and small pop-up celebrations.</p>
                     <ul class="package-features-list">
                         <li>✓ Live-scooped tiramisu bar station with LED lighting</li>
@@ -2107,7 +2107,7 @@ body{margin-bottom:0;padding-bottom:0}
                         <li>✓ Standard white & green floral decor setup</li>
                         <li>✓ Complimentary Delivery & Setup within Penang Butterworth & Prai. Surcharge applies elsewhere.</li>
                     </ul>
-                    <button class="package-btn" onclick="selectPackage('Petite'); document.getElementById('booking').scrollIntoView();">Select Petite</button>
+                    <button class="package-btn" onclick="selectPackage('Petite'); document.getElementById('booking').scrollIntoView();">Request a Quote</button>
                 </div>
 
                 <div class="package-card featured float-in" style="transition-delay: 0.25s;">
@@ -2117,7 +2117,7 @@ body{margin-bottom:0;padding-bottom:0}
                         <div class="capacity-badge">150 PAX CAPACITY</div>
                     </div>
                     <div class="guest-match">Best for 120–150 Guests</div>
-                    <span class="package-price">RM 2,200</span>
+                    <span class="package-price"><small class="package-from">Starting from</small>RM 2,200</span>
                     <p class="package-desc">Perfect for wedding receptions, milestone celebrations, and after-parties — scooped fresh in front of your guests.</p>
                     <ul class="package-features-list">
                         <li>✓ Live-scooped tiramisu bar station with LED lighting</li>
@@ -2127,7 +2127,7 @@ body{margin-bottom:0;padding-bottom:0}
                         <li>✓ Standard white & green floral decor setup</li>
                         <li>✓ Complimentary Delivery & Setup within Penang Butterworth & Prai. Surcharge applies elsewhere.</li>
                     </ul>
-                    <button class="package-btn" onclick="selectPackage('Signature'); document.getElementById('booking').scrollIntoView();">Select Signature</button>
+                    <button class="package-btn" onclick="selectPackage('Signature'); document.getElementById('booking').scrollIntoView();">Request a Quote</button>
                 </div>
 
                 <div class="package-card float-in" style="transition-delay: 0.4s;">
@@ -2136,7 +2136,7 @@ body{margin-bottom:0;padding-bottom:0}
                         <div class="capacity-badge">200 PAX CAPACITY</div>
                     </div>
                     <div class="guest-match">Best for 160–200 Guests</div>
-                    <span class="package-price">RM 2,800</span>
+                    <span class="package-price"><small class="package-from">Starting from</small>RM 2,800</span>
                     <p class="package-desc">Designed for large corporate events, brand launches, and annual dinners.</p>
                     <ul class="package-features-list">
                         <li>✓ Live-scooped tiramisu bar station with LED lighting</li>
@@ -2146,9 +2146,10 @@ body{margin-bottom:0;padding-bottom:0}
                         <li>✓ Standard white & green floral decor setup</li>
                         <li>✓ Complimentary Delivery & Setup within Penang Butterworth & Prai. Surcharge applies elsewhere.</li>
                     </ul>
-                    <button class="package-btn" onclick="selectPackage('Grande'); document.getElementById('booking').scrollIntoView();">Select Grande</button>
+                    <button class="package-btn" onclick="selectPackage('Grande'); document.getElementById('booking').scrollIntoView();">Request a Quote</button>
                 </div>
             </div>
+            <p class="package-quote-note">Final pricing depends on flavour selection, event location and service requirements. Please request a quote for your event.</p>
         </div>
     </section>
 
@@ -2157,33 +2158,33 @@ body{margin-bottom:0;padding-bottom:0}
         <div class="section-inner">
             <div class="section-header float-in">
                 <span>Artisanal Recipe</span>
-                <h2>Signature Tiramisu Flavors</h2>
+                <h2>Signature Tiramisu Flavours</h2>
                 <div class="swipe-hint" style="text-align: center; font-size: 11px; color: var(--caramel); margin-top: 8px; letter-spacing: 1px;">
-                    ← Swipe sideways to view all flavors →
+                    Swipe to explore <span aria-hidden="true">→</span>
                 </div>
             </div>
             <div class="flavors-grid">
-                <div class="flavor-card float-in split-left">
+                <div data-alcohol="contains-alcohol" class="flavor-card float-in split-left">
                     <div class="flavor-img-container">
                         <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG_1539.jpeg_2K_202609040114.jpeg" alt="Classic alcoholic tiramisu for mobile dessert cart in Penang" class="default-img">
                         <img src="assets/classic-tray-original-b.png" alt="Alcoholic tiramisu detailed view" class="hover-img">
                     </div>
                     <div class="flavor-info">
                         <span class="flavor-index">01 / THE ORIGINAL</span><h3>Classic Alcoholic<br><em>Tiramisu</em></h3>
-                        <p>Ladyfingers soaked in single-origin Sumatra Mandheling espresso, spiked with Kahl&uacute;a and Baileys Irish Cream, layered with mascarpone and finished with 100% pure cocoa powder.</p>
+                        <p>Ladyfingers soaked in single-origin Sumatra Mandheling espresso, spiked with Kahl&uacute;a and Baileys Irish Cream, layered with mascarpone and finished with 100% pure cocoa powder.</p><span class="alcohol-mark is-alcohol"><svg viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M4 2h8l1 5c0 3-2 4-5 4S3 10 3 7l1-5Zm4 9v7m-4 0h8M4 6h8"/></svg>Contains alcohol</span>
                     </div>
                 </div>
-                <div class="flavor-card float-in" style="transition-delay: 0.2s;">
+                <div data-alcohol="alcohol-free" class="flavor-card float-in" style="transition-delay: 0.2s;">
                     <div class="flavor-img-container">
                         <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/IMG_1873.jpeg_2K_202609021454.jpeg" alt="Alcohol-free tiramisu for wedding dessert cart and events" class="default-img">
                         <img src="assets/alcohol-free-spoon-warm.webp" alt="Alcohol-free tiramisu view" class="hover-img">
                     </div>
                     <div class="flavor-info">
                         <span class="flavor-index">02 / EVERYONE’S FAVOURITE</span><h3>Alcohol-Free<br><em>Tiramisu</em></h3>
-                        <p>Ladyfingers soaked in Mandheling espresso, layered with mascarpone, finished with 100% pure cocoa powder and a touch of sea salt.</p>
+                        <p>Ladyfingers soaked in Mandheling espresso, layered with mascarpone, finished with 100% pure cocoa powder and a touch of sea salt.</p><span class="alcohol-mark is-free"><span aria-hidden="true">○</span>Alcohol-free</span>
                     </div>
                 </div>
-                <div class="flavor-card float-in split-right">
+                <div data-alcohol="contains-alcohol" class="flavor-card float-in split-right">
                     <div class="flavor-img-container">
                         <img src="assets/pistachio-box-warm-cream.webp" alt="Premium pistachio tiramisu for dessert bar in Penang" class="default-img">
                         <img src="assets/pistachio-spoon-warm-cream.webp" alt="Pistachio tiramisu close-up" class="hover-img">
@@ -2191,7 +2192,7 @@ body{margin-bottom:0;padding-bottom:0}
                     <div class="flavor-info">
                         <span class="flavor-index">03 / A LITTLE INDULGENCE</span><h3>Premium Pistachio<br><em>Tiramisu</em></h3>
                         <div class="flavor-price">+RM 220 / Tray</div>
-                        <p>Ladyfingers layered with mascarpone blended with 100% premium pistachio paste, finished with a pistachio crunch.</p>
+                        <p>Ladyfingers layered with mascarpone blended with 100% premium pistachio paste, finished with a pistachio crunch.</p><span class="alcohol-mark is-alcohol"><svg viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M4 2h8l1 5c0 3-2 4-5 4S3 10 3 7l1-5Zm4 9v7m-4 0h8M4 6h8"/></svg>Contains alcohol</span>
                     </div>
                 </div>
             </div>
@@ -2206,8 +2207,8 @@ body{margin-bottom:0;padding-bottom:0}
             <div class="tasting-box-banner float-in">
                 <div class="tasting-box-info split-left">
                     <h2>Tasting Box Available for Preorder</h2>
-                    <p>Not sure which flavor to choose? Try our signature tiramisu flavors at home before your big day!</p>
-                    <a href="https://wa.me/601112998136?text=Hi%20mello%20scoop,%20I%20would%20like%20to%20preorder%20a%20Tasting%20Box." target="_blank" class="btn-primary">Order Tasting Box</a>
+                    <p>Not sure which flavour to choose? Try our signature tiramisu flavours before your big day!</p>
+                    <a href="https://wa.me/melloscoop?text=Hi%20mello%20scoop,%20I%20would%20like%20to%20preorder%20a%20Tasting%20Box." target="_blank" class="btn-primary">Order Tasting Box</a>
                 </div>
                 <div class="tasting-box-img split-right">
                     <img src="assets/tasting-box-studio-v2.webp" alt="Tasting box featuring pistachio and alcoholic tiramisu samples">
@@ -2240,14 +2241,7 @@ body{margin-bottom:0;padding-bottom:0}
     <section id="characters" class="bg-ivory">
         <div class="section-inner">
             <div class="characters-showcase float-in">
-                <div class="characters-img-slider split-left" id="charSlider">
-                    <div class="char-slide active">
-                        <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Characters_interacting_with_gian%E2%80%A6_2K_202609032041.jpeg" alt="Miniature chef characters decorating mobile tiramisu cart in Penang">
-                    </div>
-                    <div class="char-slide">
-                        <img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Tiny_characters_interacting_with%E2%80%A6_2K_202609032041.jpeg" alt="Handcrafted miniature chef characters for dessert bar in Penang">
-                    </div>
-                </div>
+                <div class="characters-img-slider split-left" id="charSlider"><div class="char-slide active"><img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Characters_interacting_with_gian%E2%80%A6_2K_202609032041.jpeg" alt="Miniature chef characters decorating mobile tiramisu cart in Penang"></div><div class="char-slide"><img src="https://raw.githubusercontent.com/nicol8822/imageandvideo/refs/heads/main/Tiny_characters_interacting_with%E2%80%A6_2K_202609032041.jpeg" alt="Handcrafted miniature chef characters for dessert bar in Penang"></div></div>
                 <div class="characters-text split-right">
                     <span>The Whimsical World</span>
                     <h3>Small Souls, Big Magic</h3>
@@ -2349,9 +2343,9 @@ body{margin-bottom:0;padding-bottom:0}
                                 <label for="select-package">Package</label>
                                 <select id="select-package" onchange="updateTraySelectors()">
                                     <option value="" disabled selected>Select package</option>
-                                    <option value="Petite" data-price="1500" data-trays="2">Petite · 2 trays · RM1,500</option>
-                                    <option value="Signature" data-price="2200" data-trays="3">Signature · 3 trays · RM2,200</option>
-                                    <option value="Grande" data-price="2800" data-trays="4">Grande · 4 trays · RM2,800</option>
+                                    <option value="Petite" data-price="1500" data-trays="2">Petite · 2 trays · from RM1,500</option>
+                                    <option value="Signature" data-price="2200" data-trays="3">Signature · 3 trays · from RM2,200</option>
+                                    <option value="Grande" data-price="2800" data-trays="4">Grande · 4 trays · from RM2,800</option>
                                 </select>
                             </div>
                             <div class="form-group-item">
@@ -2397,8 +2391,8 @@ body{margin-bottom:0;padding-bottom:0}
                 <div class="chapter">
                     <div class="chapter-num">02</div>
                     <div class="chapter-head">
-                        <h3>Your flavors</h3>
-                        <p>Pick a flavor for each tray in your package. <span id="tray-count-label">0 tray</span></p>
+                        <h3>Your flavours</h3>
+                        <p>Pick a flavour for each tray in your package. <span id="tray-count-label">0 tray</span></p>
                     </div>
                     <div class="chapter-body">
                         <div id="tray-selectors-container"></div>
@@ -2442,7 +2436,7 @@ body{margin-bottom:0;padding-bottom:0}
                 </div>
 
                 <button class="btn" style="width: 100%; border-radius: 10px; padding: 14px; font-size: 14px; margin-top: 16px;" onclick="checkAvailability()">Check availability</button>
-                <p class="booking-hint">No booking is confirmed yet — we'll follow up on WhatsApp.</p>
+                <p class="booking-hint">This is an estimate, not a confirmed quote. We’ll confirm availability and final pricing on WhatsApp.</p>
                 <div id="check-result" style="margin-top: 15px; text-align: center;"></div>
             </div>
         </div>
@@ -2461,7 +2455,7 @@ body{margin-bottom:0;padding-bottom:0}
                 <h4>NAVIGATION</h4>
                 <div class="footer-links-list">
                     <a href="#packages">Packages</a>
-                    <a href="#flavors">Flavors</a>
+                    <a href="#flavors">Flavours</a>
                     <a href="#gallery">Gallery</a>
                     <a href="characters/">Characters</a>
                     <a href="#faq">FAQ</a>
@@ -2470,7 +2464,8 @@ body{margin-bottom:0;padding-bottom:0}
             <div class="footer-col">
                 <h4>CONTACT</h4>
                 <div class="footer-contact-items">
-                    <a href="https://wa.me/601112998136" target="_blank" class="footer-contact-item">
+<a href="https://www.instagram.com/melloscoop/" target="_blank" rel="noopener noreferrer" class="footer-contact-item" aria-label="Instagram @melloscoop"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>melloscoop</span></a>
+                    <a href="https://wa.me/melloscoop" target="_blank" class="footer-contact-item">
                         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                         <span>WhatsApp Us</span>
                     </a>
@@ -2734,7 +2729,7 @@ body{margin-bottom:0;padding-bottom:0}
             const areaString = areaInput ? ` Area / postcode: ${areaInput}.` : "";
             const addonsString = addonsSummary.length > 0 ? ` Add-ons: [${addonsSummary.join(', ')}].` : "";
             
-            const messageString = `Hi mello scoop, I would like to inquire about a ${eventType} booking for date: ${dateInput}, serving time: ${servingTime}.${venueString}${areaString} Package: ${calc.packageName} (RM ${calc.basePrice.toLocaleString()}), Flavors: [${flavorSummary.join(', ')}].${addonsString} Estimated Total: RM ${calc.estimatedTotal.toLocaleString()}. Please help me confirm my name and final delivery fee.`;
+            const messageString = `Hi mello scoop, I would like to inquire about a ${eventType} booking for date: ${dateInput}, serving time: ${servingTime}.${venueString}${areaString} Package: ${calc.packageName} (starting from RM ${calc.basePrice.toLocaleString()}), Flavours: [${flavorSummary.join(', ')}].${addonsString} Estimated Total: RM ${calc.estimatedTotal.toLocaleString()}. Please confirm availability and provide a final quote including delivery.`;
             const waMessage = encodeURIComponent(messageString);
 
             let pistachioLine = calc.pistachioCount > 0 ? `• Premium Pistachio Upgrade: ${calc.pistachioCount} × RM220 = +RM${calc.pistachioUpgradeTotal.toLocaleString()}<br>` : "";
@@ -2751,7 +2746,7 @@ body{margin-bottom:0;padding-bottom:0}
                         <strong>Selected Summary:</strong><br>
                         • Event Type: ${eventType}<br>
                         • Serving Time: ${servingTime}<br>
-                        • Package: ${calc.packageName} (RM ${calc.basePrice.toLocaleString()})<br>
+                        • Package: ${calc.packageName} (starting from RM ${calc.basePrice.toLocaleString()})<br>
                         ${pistachioLine}
                         ${mirrorLine}
                         ${hourLine}
@@ -2761,7 +2756,7 @@ body{margin-bottom:0;padding-bottom:0}
                         • <strong>Estimated Total: RM ${calc.estimatedTotal.toLocaleString()}</strong>
                     </div>
                 </div>
-                <a href="https://wa.me/601112998136?text=${waMessage}" target="_blank" class="btn" style="padding: 10px 22px; font-size: 13px; width: 100%; border-radius: 10px; text-decoration: none; display: inline-block; margin-top: 10px;">Continue & Confirm on WhatsApp</a>
+                <a href="https://wa.me/melloscoop?text=${waMessage}" target="_blank" class="btn" style="padding: 10px 22px; font-size: 13px; width: 100%; border-radius: 10px; text-decoration: none; display: inline-block; margin-top: 10px;">Request a Quote on WhatsApp</a>
             `;
         }
     </script>
