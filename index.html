@@ -2038,7 +2038,7 @@ body[data-hero-colour="1"] header .logo-text{color:#b8915e!important}body[data-h
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Mello Scoop"><meta property="og:title" content="Premium Tiramisu Bar Catering in Penang | Mello Scoop"><meta property="og:description" content="Live-scooped tiramisu bar catering for weddings, parties and corporate events in Penang. Explore packages from RM1,800, three flavours and tasting boxes."><meta property="og:url" content="https://melloscoop.com/"><meta property="og:image" content="https://melloscoop.com/assets/hero-real-cart-preview.webp"><meta property="og:image:alt" content="Mello Scoop tiramisu bar station with ivory canopy and floral arrangement"><meta property="og:locale" content="en_MY"><meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://melloscoop.com/#organization", "name": "Mello Scoop", "legalName": "HELLO MELLO ENTERPRISE", "url": "https://melloscoop.com/", "logo": "https://melloscoop.com/assets/mello-logo-source.png", "sameAs": ["https://www.instagram.com/melloscoop/"]}, {"@type": "WebSite", "@id": "https://melloscoop.com/#website", "url": "https://melloscoop.com/", "name": "Mello Scoop", "publisher": {"@id": "https://melloscoop.com/#organization"}, "inLanguage": "en-MY"}, {"@type": "Service", "@id": "https://melloscoop.com/#tiramisu-bar", "name": "Premium Tiramisu Bar Catering", "serviceType": "Live-scooped tiramisu catering for events", "provider": {"@id": "https://melloscoop.com/#organization"}, "areaServed": {"@type": "AdministrativeArea", "name": "Penang, Malaysia"}, "url": "https://melloscoop.com/#packages", "description": "Live-scooped tiramisu bar station for weddings, birthday parties, corporate events and celebrations. Delivery, setup and dismantling are quoted separately."}]}</script>
-<style id="service-intro-style">.service-introduction{padding:48px 24px;background:var(--bg-ivory);text-align:center}.service-introduction .section-inner{max-width:860px}.service-introduction h2{font-size:28px;margin-bottom:18px}.service-introduction p{font-size:14px;line-height:1.8;color:var(--text-muted);margin:0 auto 12px;max-width:760px}.service-intro-link{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent-brown);text-decoration:underline;text-underline-offset:5px}@media(max-width:650px){.service-introduction{padding:36px 24px}.service-introduction h2{font-size:24px}.service-introduction p{font-size:13px}}</style><noscript><style>.float-in,.split-left,.split-right{opacity:1!important;transform:none!important}</style></noscript><style id="hero-original-darkening">.hero-slide img{filter:brightness(.97)!important}.hero-overlay{display:block!important;background:linear-gradient(to bottom,rgba(54,42,34,.14),rgba(54,42,34,.04))!important;position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}</style></head>
+<style id="service-intro-style">.service-introduction{padding:48px 24px;background:var(--bg-ivory);text-align:center}.service-introduction .section-inner{max-width:860px}.service-introduction h2{font-size:28px;margin-bottom:18px}.service-introduction p{font-size:14px;line-height:1.8;color:var(--text-muted);margin:0 auto 12px;max-width:760px}.service-intro-link{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent-brown);text-decoration:underline;text-underline-offset:5px}@media(max-width:650px){.service-introduction{padding:36px 24px}.service-introduction h2{font-size:24px}.service-introduction p{font-size:13px}}</style><noscript><style>.float-in,.split-left,.split-right{opacity:1!important;transform:none!important}</style></noscript><style id="hero-original-darkening">.hero-slide img{filter:brightness(.97)!important}.hero-overlay{display:block!important;background:linear-gradient(to bottom,rgba(54,42,34,.14),rgba(54,42,34,.04))!important;position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}</style><script defer src="assets/site-analytics.js"></script></head>
 <body>
 
     <a href="https://wa.me/melloscoop" class="floating-whatsapp" aria-label="WhatsApp Us" target="_blank">
@@ -2448,7 +2448,7 @@ body[data-hero-colour="1"] header .logo-text{color:#b8915e!important}body[data-h
                     <div class="est-price-val" id="display-total">RM 0</div>
                 </div>
 
-                <button class="btn" style="width: 100%; border-radius: 10px; padding: 14px; font-size: 14px; margin-top: 16px;" onclick="checkAvailability()">Check availability</button>
+                <button class="btn" style="width: 100%; border-radius: 10px; padding: 14px; font-size: 14px; margin-top: 16px;" onclick="checkAvailability()">Check date availability</button>
                 <p class="booking-hint">This is an estimate, not a confirmed quote. We’ll confirm availability and final pricing on WhatsApp.</p>
                 <div id="check-result" style="margin-top: 15px; text-align: center;"></div>
             </div>
@@ -2586,14 +2586,23 @@ body[data-hero-colour="1"] header .logo-text{color:#b8915e!important}body[data-h
         let bookedDatesLoaded = false;
 
         async function loadBookedDates() {
+            bookedDatesLoaded = false;
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 12000);
             try {
-                const res = await fetch(BOOKING_API_URL);
+                const url = new URL(BOOKING_API_URL);
+                url.searchParams.set('_', Date.now());
+                const res = await fetch(url, { signal: controller.signal, cache: 'no-store' });
+                if (!res.ok) throw new Error('Availability service unavailable');
                 const data = await res.json();
-                fullyBookedDates = data.bookedDates || [];
-            } catch (err) {
-                fullyBookedDates = [];
-            } finally {
+                if (!Array.isArray(data.bookedDates) || !data.bookedDates.every(d => typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d))) throw new Error('Invalid availability data');
+                fullyBookedDates = data.bookedDates;
                 bookedDatesLoaded = true;
+                return true;
+            } catch (err) {
+                return false;
+            } finally {
+                clearTimeout(timeout);
             }
         }
 
@@ -2697,7 +2706,7 @@ body[data-hero-colour="1"] header .logo-text{color:#b8915e!important}body[data-h
             };
         }
 
-        function checkAvailability() {
+        async function checkAvailability() {
             const dateInput = document.getElementById('booking-date').value;
             const packageSelect = document.getElementById('select-package');
             const venueInput = document.getElementById('venue-input').value.trim();
@@ -2714,8 +2723,27 @@ body[data-hero-colour="1"] header .logo-text{color:#b8915e!important}body[data-h
                 resultDiv.innerHTML = `<div class="notice-card-box"><div class="notice-card-title">Serving time required</div><div class="notice-card-desc">Please choose a start time.</div></div>`;
                 return;
             }
-            if (!bookedDatesLoaded) {
-                resultDiv.innerHTML = `<div class="notice-card-box"><div class="notice-card-title">Loading</div><div class="notice-card-desc">Checking availability, please try again in a moment.</div></div>`;
+            const today = new Date();
+            const selected = new Date(dateInput + 'T00:00:00');
+            today.setHours(0, 0, 0, 0);
+            if (selected < today || ![0, 6].includes(selected.getDay())) {
+                resultDiv.innerHTML = '<div class="notice-card-box"><div class="notice-card-title">Choose another date</div><div class="notice-card-desc">Please select an upcoming Saturday or Sunday.</div></div>';
+                return;
+            }
+            const button = document.querySelector('[onclick="checkAvailability()"]');
+            if (button.disabled) return;
+            button.disabled = true;
+            button.textContent = 'Checking your date…';
+            resultDiv.innerHTML = '<div class="notice-card-box" role="status">Checking the latest availability…</div>';
+            const loaded = await loadBookedDates();
+            button.disabled = false;
+            button.textContent = 'Check date availability';
+            if (!loaded) {
+                resultDiv.innerHTML = '<div class="notice-card-box" role="status"><div class="notice-card-title">Let’s confirm your date</div><div class="notice-card-desc">We couldn’t check the calendar just now. Please try again, or contact us on WhatsApp to check your preferred date.</div><a href="https://wa.me/melloscoop" target="_blank" rel="noopener">Check with us on WhatsApp →</a></div>';
+                return;
+            }
+            if (document.getElementById('booking-date').value !== dateInput) {
+                resultDiv.innerHTML = '<div class="notice-card-box" role="status">Your date changed. Please check your new date.</div>';
                 return;
             }
             if (fullyBookedDates.includes(dateInput)) {
@@ -2750,14 +2778,15 @@ body[data-hero-colour="1"] header .logo-text{color:#b8915e!important}body[data-h
             let mirrorLine = calc.addonMirrorChecked ? `• Custom Calligraphy Welcome Mirror Rental: +RM150<br>` : "";
             let hourLine = calc.addonHourChecked ? `• Additional Service Hour: +RM100 / hr<br>` : "";
             let creampuffLine = calc.addonCreampuffChecked ? `• Cream Puff Add-on: ${calc.creampuffQty} pcs \u00d7 RM4 = +RM${(calc.creampuffQty * 4).toLocaleString()}<br>` : "";
-            let venueLine = venueInput ? `• Venue: ${venueInput}<br>` : "";
-            let areaLine = areaInput ? `• Area / postcode: ${areaInput}<br>` : "";
+            const escapeHtml = value => value.replace(/[&<>"\']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "\'":"&#39;"}[c]));
+            let venueLine = venueInput ? `• Venue: ${escapeHtml(venueInput)}<br>` : "";
+            let areaLine = areaInput ? `• Area / postcode: ${escapeHtml(areaInput)}<br>` : "";
 
             resultDiv.innerHTML = `
                 <div class="notice-card-box">
-                    <div class="notice-card-title">Selected date ${dateInput} is available!</div>
+                    <div class="notice-card-title">Your date is open for enquiries</div>
                     <div class="notice-card-desc" style="margin-top: 6px;">
-                        <strong>Selected Summary:</strong><br>
+                        We haven’t reserved this date yet. We’ll confirm the details and deposit with you on WhatsApp.<br><br><strong>Your enquiry:</strong><br>• Event date: ${dateInput}<br>
                         • Event Type: ${eventType}<br>
                         • Serving Time: ${servingTime}<br>
                         • Package: ${calc.packageName} (starting from RM ${calc.basePrice.toLocaleString()})<br>
