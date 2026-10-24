@@ -1,0 +1,26 @@
+MELLO SCOOP SEARCH VISIBILITY - SUBMISSION CHECKLIST
+
+This package changes only machine-readable metadata and crawler files. Visible page copy and design are unchanged.
+
+1. Google Search Console
+   - Verify melloscoop.com as a Domain property using DNS.
+   - Submit https://melloscoop.com/sitemap.xml.
+   - Inspect https://melloscoop.com/ and https://melloscoop.com/characters/; request indexing and resolve any crawl, canonical, mobile, or page-fetch errors.
+   - Check Indexing > Pages and Performance > Search results after Google recrawls the site.
+
+2. Bing Webmaster Tools / Copilot discovery
+   - Verify melloscoop.com (importing the verified Google Search Console property is the easiest route).
+   - Submit the same sitemap and review crawl/indexing errors.
+   - Enable IndexNow only after generating and hosting the required verification key file. Do not send unverified submissions.
+
+3. Google Business Profile and local directories
+   - Keep the public name exactly "Mello Scoop" and the same business name, phone, website, service area, and category across all profiles.
+   - Use a catering/event dessert category that accurately describes the business; set Penang service areas only where service is actually available.
+   - Add current cart, dessert, setup, and event photos; request genuine reviews from customers. Do not add venue or decoration services unless Mello Scoop provides them.
+
+4. Social and AI search
+   - Keep official profile names and website links consistent on Instagram and any verified Facebook, TikTok, YouTube, or other profiles.
+   - robots.txt permits OAI-SearchBot, PerplexityBot, and all other crawlers by default. The host/CDN firewall must also allow them.
+   - llms.txt is a supplementary machine-readable summary; adoption is not universal and it does not guarantee AI citations.
+
+Important: metadata, schema, robots.txt and sitemaps help discovery and understanding; they cannot guarantee indexing or rankings. Do not add invisible keyword lists. "Wedding venue" and "event decoration" were omitted because the site describes dessert catering, not those services.
