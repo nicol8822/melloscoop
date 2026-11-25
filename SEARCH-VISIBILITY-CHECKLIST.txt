@@ -24,3 +24,4 @@ This package changes only machine-readable metadata and crawler files. Visible p
    - llms.txt is a supplementary machine-readable summary; adoption is not universal and it does not guarantee AI citations.
 
 Important: metadata, schema, robots.txt and sitemaps help discovery and understanding; they cannot guarantee indexing or rankings. Do not add invisible keyword lists. "Wedding venue" and "event decoration" were omitted because the site describes dessert catering, not those services.
+
